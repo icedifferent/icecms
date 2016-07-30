@@ -1,0 +1,233 @@
+<extend name="web:Public:body"/>
+<block name="title">
+<title><{$title}></title>
+<script>
+	
+	$(function(){
+		
+         var ajaxUrl = Document.URL;
+	 document.getElementById("submit").onclick=function(){ 
+		 $("#tip").html("正在提交评论........请稍等......");
+		     $.post('__URL__/add_respond',{'content':editor.text(),'id':$("#article_id").val(),'csrf_token':$("#csrf_token").val()},function(json){
+			     $("#myresponse").html(json.content);
+			      $("#tip").html("回复成功");
+			    editor.html("");
+		    
+	      });
+      }
+
+     document.getElementById("zan").onclick=function zan(){
+	      $("#tozan").html('已赞');
+	      $("#rz").html(<{$praise_times}>+1);
+	      document.cookie="<{$article_id}>=zture"
+	      $.post('__CONTROLLER__/praise/id/',{'id':$("#article_id").val()},function(json){			 
+	      });
+      }
+
+
+     })
+     </script>
+
+     <style>
+			form {
+				margin: 0;
+			}
+			textarea {
+				display: block;
+			}
+		</style>
+		<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+		<script charset="utf-8" src="__PUBLIC__/editor/kindeditor-min.js"></script>
+		<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+		<script>
+			
+		KindEditor.plugin('insert_code', function(K) {  
+  			 var editor = this, name = 'insert_code';  
+  			 // 点击图标时执行  
+  			 editor.clickToolbar(name, function() {  
+				editor.insertHtml('[code]//请在这里写代码 [/code]');  
+  			 });  
+		});  
+		KindEditor.lang({  
+           	         insert_code : '插入代码'  
+		});
+	
+		KindEditor.options.filterMode = true;
+			var editor;
+			KindEditor.ready(function(K) {
+				editor = K.create('textarea[name="content"]', {
+					newlineTag : "br",
+					 width : '100%',
+					resizeType : 1,
+					allowPreviewEmoticons : false,
+					allowImageUpload : true,
+					items : [
+						 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+						'removeformat',  '|', 'emoticons', 'image', 'link','insertfile','insert_code','source']
+					});
+
+			
+       			
+			
+					
+			});
+		
+		</script>
+		<script type="text/javascript"><!--
+		google_ad_client = "ca-pub-7116729301372758";
+		/* 更多演示（728x90） */
+		google_ad_slot = "5052271949";
+		google_ad_width = 728;
+		google_ad_height = 90;
+		//-->
+		</script>
+</block>
+<block name="body">
+	<div class="content-wrap">
+	<div class="content">
+
+				<header class="article-header">
+				<h1 class="article-title"><a href=""><{$title}></a></h1>
+				<hr >
+			<div class="meta">
+				<span id="mute-category" class="muted"><i class="fa fa-list-alt"></i>
+				<a href="__MODULE__/Bbs/board_list/id/<{$board_id}>"><{$board}></a></span>
+			<span class="muted">
+				<if condition="$user_img eq ''">
+					<img class="image2" src="__PUBLIC__/Uploads/user_head/defalut.jpg" /> 
+				<else/>
+					<img class="image2" src="__PUBLIC__/Uploads/user_head/<{$user_img}>" /> 
+				</if>
+				<a href="__MODULE__/Home/zone/id/<{$user_id}>.html"><{$user_name}></a>ID:<{$user_id}></span>
+				<time class="muted"><i class="fa fa-clock-o"></i> <{$date}></time>
+				<span class="muted"><i class="fa fa-eye"></i><{$hot}>次浏览</span>
+				<span class="muted"><i class="fa fa-flag"></i> 
+					<a style="color:red;" rel="external nofollow" title="@TA！" href="javascript:onclick=atAdd('<{$user_name}>'); return false">@Ta</a>	</span>			
+				<span class="muted"><i class="fa fa-comments-o"></i>
+					<a href="__MODULE__/message/index/id/<{$user_id}>.html">给TA发送消息</a></span>			
+			</div>
+			</header>
+				<div style=" padding-right:5px 30px; background-color:#FFF; border:solid #D1D1D1;-webkit-border-radius: 15px; -moz-border-radius: 15px;"><{$content}></div><br/><p><{$browser}></p>
+		<article class="article-content">
+		
+<hr /><div align="center" class="open-message"><i class="fa fa-bullhorn"></i>文明发帖,营造良好的学习氛围</div>		      
+<div class="article-social">
+<if condition="$_COOKIE[$article_id] eq 'zture'">
+		<b  class="action"><i class="fa fa-heart-o"></i>已赞</b>
+		<else/>
+	<a href="javascript:onclick=zan();" id="zan" class="action"><i class="fa fa-heart-o"></i>赞！ 
+		</if>
+
+	(<span class="count" id="rz"><{$praise_times}></span>)</a>
+
+
+	<br/>
+	<span class="action action-share bdsharebuttonbox"><i class="fa fa-share-alt"></i>
+<div class="bshare-custom icon-medium"><a title="分享" href="http://www.bShare.cn/" id="bshare-shareto" class="bshare-more">分享</a><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到网易微博" class="bshare-neteasemb"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a><span class="BSHARE_COUNT bshare-share-count">0</span></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=2&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+</span></div>
+</article>
+	本文地址:<input value="<{$url}>" style=" border:solid #D1D1D1;width:80%; -webkit-border-radius: 15px; -moz-border-radius: 15px;">
+<div id="postcomments">
+	<div id="comments">
+		<a href=__CONTROLLER__/respond_list/id/<{$article_id}>.html>【评论列表】</a>
+		<i class="fa fa-comments-o"></i> <b>(<{$count}>)</b>个小伙伴评论了此文章
+	</div>
+	<ol class="commentlist">
+			<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-24">
+		<div class="c-avatar" >
+			<div class="c-main"  id="myresponse" style="color:red;"  >
+
+				</div>
+		</div><!--ajax回调-->
+		</li>
+		<volist name="respond_arr" id="vo" mod="5">
+		<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-24">
+		<div class="c-avatar">
+			<?php
+				//找出每一个回复者的头像
+				$b=M('User');
+				$data['user_id']=$vo['respond_user_id'];
+				$user_img=$b->where($data)->getField('user_img');
+			?>
+				<if condition="$user_img eq ''">
+					<img  class="avatar avatar-108" height="50px" width="50px" data-original="__PUBLIC__/Uploads/user_head/defalut.jpg"/>
+				<else/>
+					<img  class="avatar avatar-108" height="50px" width="50px" data-original="__PUBLIC__/Uploads/user_head/<{$user_img}>" />
+				</if>
+			<div class="c-main" id="div-comment-24">
+			<{:ubb($vo["respond_content"])}><br/><p><{$vo.respond_browser}></p>
+			<div class="c-meta">
+					<span class="c-author">
+						<a href="__MODULE__/Home/zone/id/<{$vo.respond_user_id}>.html">
+							<span style="color:#FFABAB"><{$vo.respond_user_name}></span>
+						</a>//(ID:<{$vo.respond_user_id}>)
+					</span>
+			<{$vo.respond_time}>
+	    <a class='comment-reply-link'  href="javascript:onclick=atAdd('<{$vo.respond_user_name}>'); (function(){return;})();">@Ta|评论TA</a>
+				</div>
+			</div>
+		</div>
+		</li>
+		</volist><!-- #comment-## -->
+	</ol>
+	<div class="commentnav"	>
+			</div>
+</div>
+
+
+
+				<div id="respond" class="no_webshot">
+	<if condition="$status neq 0">
+	<form action="<{:U('add_respond')}>" method="post" ">
+		<div class="comt-title">
+			<div class="comt-avatar pull-left">
+				<img src="https://secure.gravatar.com/avatar/?s=108" class="avatar avatar-108" height="50px" width="50px">	
+			</div>
+			<div class="comt-author pull-left">
+				发表我的评论|<a style="color:red;" rel="external nofollow" title="@TA！" href="javascript:onclick=atAdd('<{$user_name}>'); (function(){return;})();">@Ta|通知作者</a>	</span>			
+			</div>
+			<div id="result"></div>
+		</div>
+
+		<div class="comt" style=" border:solid #D1D1D1;width:90%; -webkit-border-radius: 15px; -moz-border-radius: 15px;>
+			<div class="comt-box">
+				<if condition="$my_id eq ''">
+				<textarea name="content"    id="content" disabled="true" style="width:700px;height:200px;visibility:hidden;">请先登录或者注册后再进行评论</textarea>
+				请点击:-->><a href="__MODULE__/Login"><span>登录</span></a>//<a href="__MODULE__/Login/reg"><span>注册</span></a>
+							<div class="comt-ctrl"><p id="tip" class ="pull-right" style="color:red;" ></p>
+					<div style ="text-align:center;" >
+						<button class="btn btn-primary "  type="button" name="submit" id="submit" tabindex="5" />评论</button>
+								</div>
+			</div>
+	<else/>
+	<textarea placeholder="说点什么吧…"  name="content" id="content" style="width:700px;height:200px;visibility:hidden;"></textarea>
+	<input name="csrf_token" type="hidden"  id="csrf_token"  value= <{$csrf_token}> />
+				<input type="hidden" name="id" value="<{$article_id}>" id="article_id" class="left" />
+				<div class="comt-ctrl"><p id="tip" class ="pull-right" style="color:red;" ></p>
+					<div style ="text-align:center;" >
+						<button class="btn btn-primary "  type="button" name="submit" id="submit" tabindex="5" />评论</button>
+								</div>
+			</div>	</if>
+		</div>
+		</div>
+</form>
+<else/>
+	管理员已经锁定此文章，禁止评论
+	</if>
+	</div>
+</div>
+</div>
+	</block>
+    
+    <block name="you">
+	<div class="title">
+		<h2>
+			编程知识
+		</h2>
+	</div>
+            <volist name="a_list_b" id="vo" mod="10">
+	   	<a target="_blank" href="__MODULE__/Article/read/id/<{$vo.article_id}>.html" title="<{$vo.article_title}>"><{$vo.article_title}></a><br>
+    </volist>
+</block>
+
+

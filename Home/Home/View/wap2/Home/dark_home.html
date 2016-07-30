@@ -1,0 +1,38 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+<block name="body">
+<div class="bbs_line"><a href="__MODULE__/Index/index">首页</a>>小黑屋</div>
+<div class="top">传说中的小黑屋。。。擦，太黑了</div>
+<div class='box'>
+	<volist name="list" id="vo" mod="20">
+	<if condition="$mod%2 neq 0">
+<div class="bbs_ping_title">
+	<else/>
+	<div class="bbs_ping_title_two">
+</if>
+<{$mod+1}>.
+	ID:<{$vo.user_id}>:<a href=__MODULE__/Home/zone/id/<{$vo.user_id}>><{$vo.user_name}></a>
+	<br>
+	禁止操作的方面:
+	<br>
+	<if condition="$vo.user_status eq 0">
+	#用户未激活
+	<elseif condition="$vo.user_status eq 2"/>
+	#禁止修改资料
+	<elseif condition="$vo.user_status eq 3"/>
+	#禁止论坛发帖
+	<elseif condition="$vo.user_status eq 6"/>
+	#禁止聊天室发言
+	<elseif condition="$vo.user_status eq 7"/>
+	#禁止回帖
+	<elseif condition="$vo.user_status eq 8"/>
+	#禁止所有行为
+	<else />
+	</if>
+	<br>
+	  TA被关进这里的原因是:<{$vo.user_violations_content}></div>
+	</volist>
+</div>
+</block>

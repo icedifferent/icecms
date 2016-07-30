@@ -1,0 +1,59 @@
+<extend name="web:Public:body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+<block name="body">
+<div class="content-wrap">
+	<div class="content">
+		<header class="archive-header">
+		</header>
+<volist name="list" id="vo" mod="8">
+<article class="excerpt">
+<header><h2>
+	    <if condition="$mod+1 elt 3">
+		<img src="__PUBLIC__/images/pin_<{$mod+1}>.gif">
+		</if>
+	<if condition="$vo['post_status'] eq 5">
+		【精华】
+		</if>
+		<a target="_blank" href="__MODULE__/bbs/read/id/<{$vo.post_id}>.html" title="<{$vo.post_title}>"><{$vo.post_title}></a></h2>
+	</header>
+	<div class="focus">
+		<a target="_blank" href="__MODULE__/bbs/read/id/<{$vo.post_id}>.html">
+			<?php
+				/*$user=M('User');
+				$id=$vo['post_ower_id'];
+				$user_img=$user->where("user_id='$id'")->getField('user_img');
+				if($user_img==''){
+					echo '<img class="image" src="__PUBLIC__/Uploads/user_head/defalut.jpg" alt="'.$vo['post_title'].'" />';
+				}else{
+					echo '<img class="image" src="__PUBLIC__/Uploads/user_head/'.$user_img.'" alt="'.$vo['post_title'].'" />';
+				}*/
+			?>
+		</a>
+	</div>
+	<span class="note">
+				<?php
+					$content=$vo['post_content'];
+		       $content=preg_replace('/\<.*\>/uisU'," ",$content);
+		echo 	$content= htmlspecialchars(sub_str($content,0,120,0)).'....';
+		?>
+		……<a href="__MODULE__/bbs/read/id/<{$vo.post_id}>.html" rel="nofollow" class="more-link">继续查看 &raquo;</a></span>
+<p class="auth-span">
+<span class="muted"><i class="fa fa-user"></i> 
+	<a href="__MODULE__/Home/zone/id/<{$vo.post_ower_id}>.html"><{$vo.post_ower_name}></a>
+</span>
+<span class="muted"><i class="fa fa-clock-o"></i>
+	<{$vo.post_date}>
+	</span>	
+		<span class="muted">
+			<i class="fa fa-eye"></i>
+				<span class="count"><{$vo.post_hot}></span>阅
+		</span></p>
+</article>
+
+</volist>
+	</div>
+	<{$page}>
+</div>
+</block>

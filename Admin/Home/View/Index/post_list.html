@@ -1,0 +1,18 @@
+<extend name="Public/body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+<block name="body">
+<div class="tp"><{$title}></div>
+<hr>
+<volist name="list" id="vo" mod="20">
+<{$mod+1}>
+：ID:<{$vo.post_id}>|<{$vo.post_title}>
+<br>用户:<{$vo.post_ower_id}>|<{$vo.post_ower_name}>
+(<{$vo.post_date}>)<a href="__CONTROLLER__/change_post/id/<{$vo.post_id}>">其他操作</a>|<a href="__CONTROLLER__/change_post_do/id/<{$vo.post_id}>/post_status/3">删除</a><hr>
+</volist>
+<{$page}>
+<a href="__CONTROLLER__">返回</a>
+<hr>
+</block>
+

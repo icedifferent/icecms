@@ -1,0 +1,52 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title>注册</title>
+	<script>
+	$(function(){
+         var ajaxUrl = Document.URL;
+	     document.getElementById("user_name").onblur=function(){ 
+             $.post('__URL__/checkuser',{'user_name':$("#user_name").val()},function(json){
+		     if(json.status == 1){
+			     	 $("#result1").html("用户名已经存在");
+		     }else{
+		   		 $("#result1").html("<img src=__PUBLIC__/images/is_ok.png>");
+              	      }
+	      });
+      }
+
+       document.getElementById("user_phone").onblur=function(){ 
+	       $.post('__URL__/checkphone',{'user_phone':$("#user_phone").val()},function(json){
+		     if(json.status == 1){
+			 $("#result2").html("手机号码已经存在");
+		     }else{
+		      $("#result2").html("<img src=__PUBLIC__/images/is_ok.png>");
+              	      }
+	      });
+      }
+
+     })
+     </script>
+</block>
+<block name="body">
+<div class="top"><{$title}></div>
+
+<form name="LoginForm" method="post" action="__URL__/do_reg.html" >
+<div class="we">用户名:
+	<input id="user_name" name="user_name" type="text" class="input"  placeholder="昵称"  /><a id="result1"> </a><br>(大于一个字符并且小于10个字符)
+</div>
+<div class="we">手机号码:
+<input id="user_phone" name="user_phone" type="text" class="input"  placeholder="手机号码"  /><a id="result2"> </a>
+</div>
+<div class="we">密　码:
+	<input id="password" name="user_password" type="password" class="input" placeholder="密码" /><br>（大于6位小于20位）
+</div>
+<div class="we">验证码:
+<input id="code" name="code" type="text" class="input" placeholder="验证码" />
+
+<div class="we"><img src='__MODULE__/Public/code'onclick="this.src=this.src+'?'+Math.random()"/></div>
+<div class="we1"><input type="submit" name="submit" value="注册" class="bbs_post"/></div>
+<div class="we">已有帐号？马上
+	<a href="__URL__/index.html">登陆</a>OR<a href=__MODULE__/Home/password>忘记密码</a></div>
+<div class="text">①请填写正确信息，，注册后完善邮箱，可以用来找回密码<br/>②请规范昵称,长度应在2到12位字符之间<br/>③密码应该是字母或者数字的组合，长度大于6位数</div>
+</form>
+</block>

@@ -1,0 +1,26 @@
+<extend name="Public/body"/>
+<block name="title">
+<title>文章</title>
+</block>
+<block name="body">
+	<div class="tp">后台投稿</div>
+<form name="LoginForm" action="__URL__/add_article_do.html"enctype="multipart/form-data" method="post">
+	<p>
+	<label  class="label">标题:</label>
+	<input name="title" type="text" class="input" placeholder="标题"  />
+	<p/>
+	<hr>
+	<p>
+	<label class="label">内容:</label>
+	<textarea name="content" rows="2" cols="30" placeholder="内容"></textarea>
+	<br>
+	<p/>
+	选择文章分类
+		<volist name="board_arr_" id="vo">
+		<input name="board_id" type="radio" value="<{$vo.article_board_id}>" checked=checked/><{$vo.article_board_name}>
+		</volist>
+			<br>
+	<input type="submit" name="submit" value="投稿" class="left" />	
+	</p>
+</form>
+</block>

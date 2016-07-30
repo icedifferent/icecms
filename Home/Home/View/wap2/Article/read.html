@@ -1,0 +1,149 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title><{$title}></title>
+<script>
+	
+	$(function(){
+         var ajaxUrl = Document.URL;
+	 document.getElementById("submit").onclick=function(){ 
+		 $("#tip").html("正在提交评论........请稍等......");
+		     $.post('__URL__/add_respond',{'content':$("#content").val(),'id':$("#article_id").val(),'csrf_token':$("#csrf_token").val()},function(json){
+			     $("#myresponse").html(json.content);
+			      $("#tip").html("评论成功");
+		   		$("#content").html("");
+		    // if(json.status !=0){
+		//	     location.reload();
+		   //  }
+	      });
+      }
+
+
+       document.getElementById("tucao").onclick=function tucao(){ 
+	       $("#totu").html('已吐槽');
+	      $("#rt").html(<{$lookdown_times}>+1);
+	      document.cookie="t<{$article_id}>=tture"
+	       $.post('__CONTROLLER__/lookdown/id/',{'id':$("#article_id").val()},function(json){			 			 
+	      });
+      }
+
+
+      document.getElementById("zan").onclick=function zan(){
+	      $("#tozan").html('已赞');
+	      $("#rz").html(<{$praise_times}>+1);
+	      document.cookie="<{$article_id}>=zture"
+	      $.post('__CONTROLLER__/praise/id/',{'id':$("#article_id").val()},function(json){			 
+	      });
+      }
+
+     
+     })
+     </script>
+
+
+     <style>
+		form {
+			margin: 0;
+		}
+		textarea {
+			display: block;
+		}
+	</style>
+		<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+		<script charset="utf-8" src="__PUBLIC__/editor/kindeditor-min.js"></script>
+		<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+	
+		<script type="text/javascript"><!--
+			google_ad_client = "ca-pub-7116729301372758";
+			/* 更多演示（728x90） */
+			google_ad_slot = "5052271949";
+			google_ad_width = 728;
+			google_ad_height = 90;
+			//-->
+		</script>
+</block>
+<block name="body">
+<div class="bbs_line">
+	<a href="__MODULE__/Index/index">首页</a>>
+	<a href=__URL__/index>文章</a>>
+	<a href=__URL__/board_list/id/<{$board_id}>><{$board}></a>>
+	<a href="__MODULE__/Article/add">投稿</a>
+</div>
+<div class="bbs_head">标题：<{$title}>
+	<span class="right"><{$hot}>阅</span>
+</div>
+<div class="bbs_view"><{$content}></div>
+<div class="bbs_view_u"><b class="right" style="font-size:12px;">浏览器:<{$browsers}><br/>操作系统:<{$system}></b>
+	<b class="right"><{$date}><br>
+		<if condition="$_COOKIE[$article_id] eq 'zture'">
+		<b>已赞</b>
+		<else/>
+		<b id="tozan"><a href="javascript:onclick=zan();" id="zan" >赞</a></b>
+		</if>
+		(<a id="rz"><{$praise_times}></a>)|
+		<if condition="$_COOKIE['t'.$article_id] eq 'tture'">
+		<b>已吐槽</b>
+		<else/>
+		<b id="totu"><a href="javascript: onclick=tucao();" id="tucao" >吐槽</a></b>
+		</if>
+		(<a id="rt"><{$lookdown_times}></a>)
+		<br>
+
+
+
+		<div class="bshare-custom">分享:<div class="bsPromo bsPromo2"></div><a title="分享到QQ空间" class="bshare-qzone"></a><a title="分享到新浪微博" class="bshare-sinaminiblog"></a><a title="分享到人人网" class="bshare-renren"></a><a title="分享到腾讯微博" class="bshare-qqmb"></a><a title="分享到网易微博" class="bshare-neteasemb"></a><a title="更多平台" class="bshare-more bshare-more-icon more-style-addthis"></a></div><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/buttonLite.js#style=-1&amp;uuid=&amp;pophcol=1&amp;lang=zh"></script><script type="text/javascript" charset="utf-8" src="http://static.bshare.cn/b/bshareC0.js"></script>
+
+	</b>
+</div>
+本文地址:<input value="<{$url}>"  style=" border:solid #D1D1D1;width:80%;">
+<div class="top" style="text-align:left;">
+	投稿者:
+	<if condition="$user_img eq ''">
+		<img class="image" style="width:30px;height:30px;"src="__PUBLIC__/Uploads/user_head/defalut.jpg" /> 
+		<else/>
+		<img class="image"style="width:30px;height:30px;" src="__PUBLIC__/Uploads/user_head/<{$user_img}>" /> 
+		</if>
+	<a href=__MODULE__/Home/zone/id/<{$user_id}>.html><{$user_name}></a>ID:<{$user_id}><br>
+	<a href=__MODULE__/message/index/id/<{$user_id}>.html>给TA发送消息</a>
+</div>
+
+
+
+
+<div class="bbs_ping_line">
+	<a href=__CONTROLLER__/respond_list/id/<{$article_id}>.html>【评论列表】【<{$count}>条评论】</a></div>
+<div class="bbs_ping_title" style="color:red;" id="myresponse">
+
+</div>
+	<volist name="respond_arr" id="vo" mod="5">
+		<if condition="$mod%2 neq 0">
+			<div class="bbs_ping_title">
+		<else/>
+			<div class="bbs_ping_title_two">
+		</if>
+	<{$count-$mod}>楼:<a href=__MODULE__/Home/zone/id/<{$vo.respond_user_id}>.html><span style="color:#FFABAB"><{$vo.respond_user_name}></span></a>//(ID:<{$vo.respond_user_id}>):<{:ubb($vo["respond_content"])}><br/><b class="right" style="font-size:12px;">浏览器:<{:determinebrowser($vo["respond_browser"])}><br/>操作系统:<{:determineplatform($vo["respond_browser"])}></b>
+	<span class="right"><{$vo.respond_time}></span>
+			</div>
+	</volist>
+	<div class="bbs_ping_line"><a href=__CONTROLLER__/respond_list/id/<{$article_id}>>【查看更多评论】</a></div>
+<div class="bbs_ping_line" style="background: #BEBEBE; ">添加评论</div>
+
+
+
+<if condition="$status neq 0">
+<form method='post' action="<{:U('add_respond')}>">
+	<if condition="$my_id eq ''">
+	<textarea  type="text" value="" disabled="true" style="width:100%;height:100px;" >请先登录或者注册后再进行回复</textarea>
+	请点击:-->><a href="__MODULE__/Login"><span>登录</span></a>//<a href="__MODULE__/Login/reg"><span>注册</span></a>
+	<else/>
+	<textarea name="content" id="content" style="width:100%;height:100px;"">此文必火!!!!!</textarea>
+	<input name="csrf_token" type="hidden"  id="csrf_token"   value= <{$csrf_token}> />
+	<input type="hidden" name="id" value="<{$article_id}>" id="article_id" class="left" />
+	<div style ="text-align:center;" ><input type="button" name="submit" id="submit" class="button white"  value="评论"></div>
+	<div id="tip" style="color:red;" ></div>
+	</if>
+</form >
+<else/>
+	管理员已经锁定此文章，禁止评论
+	</if>
+
+</block>

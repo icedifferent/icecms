@@ -1,0 +1,38 @@
+<extend name="web:Public:body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+<block name="body">
+<div class="content-wrap">
+	<div class="content">
+		<header class="archive-header">
+		</header>
+		<header>
+		<h2><{$title}></h2>
+		</header>
+<volist name="list" id="vo" mod="8">
+<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-24">
+<div class="c-avatar">	<img data-original="__PUBLIC__/images/nohead.jpg" class="avatar avatar-108" height="50px" width="50px">
+			<div class="c-main" id="div-comment-24">
+
+		<span class="note">
+		<{$vo.atmessage_content}>
+		</span>
+	<p class="auth-span">
+		<span class="muted"><i class="fa fa-user"></i> 
+			发件方：<a href="__MODULE__/Home/zone/id/<{$vo.atmessage_from_user_id}>.html"><{$vo.atmessage_from_user_name}></a>(ID:<{$vo.atmessage_from_user_id}>)|
+			收件方：<a href="__MODULE__/Home/zone/id/<{$vo.atmessage_to_user_id}>.html"><{$vo.atmessage_to_user_name}></a>(ID:<{$vo.atmessage_to_user_id}>)
+		</span>
+		<span class="muted"><i class="fa fa-clock-o"></i>
+		<{$vo.atmessage_send_time}>
+		</span>	
+	</p>
+	</div>
+		</div>
+		
+	</li>
+</volist>
+	</div>
+	<{$page}>
+</div>
+</block>

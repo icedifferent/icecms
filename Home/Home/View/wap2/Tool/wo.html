@@ -1,0 +1,34 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title>联通一起沃辅助_ICECMS</title>
+</block>
+<block name="body">
+<div >联通17wo辅助平台</div>
+<a href="__URL__/wo_submit" >点我添加联通一起沃账号</a>
+<div class="title">管理我的一起沃账号:</div>
+	<?php
+	foreach($arrs as $arr){
+	echo 	$arr['mobile'].'<br />积分:'.$arr['jifen'].'<br />流量:'.$arr['liu'].'<br />沃豆:'.$arr['dou'].'<br />短信:'.$arr['duan'].'<br />沃币:'.$arr['bi'].'<a href="__URL__/wo_do/id/'.$arr['id'].'">删</a><br />';
+		}
+		?>
+		<hr>
+		<{$mes}>
+		联通的一起沃官网:http://17wo.cn<br />
+		程序采用高并发执行
+		<br />
+		已有功能:<br />1.自动领取登录奖励(+1成长值)<br />2.自动签到(+1成长值,+几M流量)<br />3.自动摇奖励(0-9M流量)<br />4.自动领取流量红包(+随机M流量)<br />5.自动伪下载获取沃豆(+1000豆)<br />6.自动伪分享领取流量(+5M流量)<br />7.签到7次后自动领取大礼包<br />8.每月领取神秘礼包<br />9.新浪合作抽奖<br />更多功能添加中。。<br />
+		ps:
+		<br />
+		每个用户最多只能添加3个17wo账号
+		<br />
+		只要在本站添加联通账号即可(不需要点击其他)<div style="color:#F00">自动执行(每隔1小时执行一次)</div>
+		<br />
+		如提示账号异常,应该是密码错误或者系统延迟或者其他未知原因
+		<br />
+		如收到验证码，属于正常原因
+		<br />
+		<div style="color:#F00">如有疑问请<a href="__MODULE__/Bbs/add">发帖提问</a></div>
+		<div >powered by ice</div>
+</block>
+
+

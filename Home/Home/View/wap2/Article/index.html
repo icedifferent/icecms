@@ -1,0 +1,40 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title>文章</title>
+</block>
+<block name="body">
+<div class="bbs_line"><a href="__MODULE__/Index/index">首页</a>><a href=__MODULE__/Article/index>文章</a>><a href=__MODULE__/Article/add>投稿</a></div>
+<form action="<{:U('Article/search')}>" method="post">
+	<input type="text" name="content"  placeholder="搜索些什么呢">
+	<input name="sort" type="radio" value="title" checked=checked/>标题
+	<input name="sort" type="radio" value="user" />用户
+	<input type="submit" name="submit" value="搜索">
+</form>
+
+
+
+<div class="bbs_fl_line">文章列表</div>
+
+<div class="bbs_fl_title"><a href=__MODULE__/Article/board_list/id/1>互联网</a><span><{$count_1}></span></div>
+	<volist name="article_list_1" id="vo" mod="8">
+	<div class="title_bbs">
+		<a href=__MODULE__/Article/read/id/<{$vo.article_id}>.html><{$vo.article_title}></a>
+	</div>
+	</volist>
+
+
+<div class="bbs_fl_title"><a href=__MODULE__/Article/board_list/id/2>编程感悟</a><span><{$count_2}></span></div>
+	<volist name="article_list_2" id="vo" mod="8">
+	<div class="title_bbs">
+		<a href=__MODULE__/Article/read/id/<{$vo.article_id}>.html><{$vo.article_title}></a>
+	</div>
+	</volist>
+
+<div class="bbs_fl_title"><a href=__MODULE__/Article/board_list/id/3>其他</a><span><{$count_3}></span></div>
+	<volist name="article_list_3" id="vo" mod="8">
+	<div class="title_bbs">
+		<a href=__MODULE__/Article/read/id/<{$vo.article_id}>.html><{$vo.article_title}></a>
+	</div>
+	</volist>
+
+</block>

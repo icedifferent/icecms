@@ -1,0 +1,25 @@
+	<extend name="web:Public:body"/>
+<block name="title">
+<title><{$user_name}>的空间</title>
+</block>
+<block name="body">
+<div class="content-wrap">
+	<div class="content">
+		<header class="archive-header">
+		TA的空间|<a href=__MODULE__/Message/index/id/<{$user_id}>>发信息给TA</a>
+		</header>
+<ul class="user-titbox">
+<div align="left" class="open-message">	<li class="title_bbs"><b>ID</b><span class="right"><{$user_id}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	用户名:</b><span class="right"><{$user_name}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	邮箱:</b><span class="right"><{$user_email}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	性别:</b><span class="right"><{$user_sex}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	积分:</b><span class="right"><{$user_integral}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	金币:</b><span class="right"><{$user_money}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	身份:</b><span class="right"><{$user_rank}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	回复总数:</b><span class="right"><{$user_respond_number}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	帖子总数:</b><span class="right"><{$user_theme_number}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	个性签名:</b><span class="right"><{$user_character}></span></li></div >
+</ul>
+</div>
+</div>
+</block>

@@ -1,0 +1,17 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title>酷我音乐搜索_ICECMS</title>
+</block>
+<block name="body">
+<div class="top">
+<img src="__PUBLIC__/LOGO.png" alt="logo">
+</div>
+<div class="title">音乐搜索(利用酷我音乐的API)(可能搜索时间比较长)</div>
+<form action="kuwoseachid.php" method ="GET">
+<font color = "green" size = "3">链接转换</font>(<a href ="about_id.htm"><font color="red">关于 - I  D</font></a>)<br />
+	<input type="text" name = "url" value=""  placeholder="输入ID或链接" ><input type="submit" value="转换"></form>
+<font color = "green" size = "3">音乐搜索</font>(<a href ="#"><font color="red">歌手/歌名</font></a>)<br />
+<form action = "kuwoseachname.php" method = "GET">
+	<input type = "text" name = "word" value = ""  placeholder="输入音乐、歌手" ><input type = "Submit" class="bbs_post" value = "搜索">
+</form>
+</block>

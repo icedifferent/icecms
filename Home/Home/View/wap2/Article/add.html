@@ -1,0 +1,79 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title>投稿</title>
+<style>
+			form {
+				margin: 0;
+			}
+			textarea {
+				display: block;
+			}
+		</style>
+		<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+		<script charset="utf-8" src="__PUBLIC__/editor/kindeditor-min.js"></script>
+		<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+		<script>
+			
+		KindEditor.plugin('insert_code', function(K) {  
+  			 var editor = this, name = 'insert_code';  
+  			 // 点击图标时执行  
+  			 editor.clickToolbar(name, function() {  
+				editor.insertHtml('[code]//请在这里写代码 [/code]');  
+  			 });  
+		});  
+		KindEditor.lang({  
+           	         insert_code : '插入代码'  
+		});
+	KindEditor.options.filterMode = true;
+		
+			var editor;
+			KindEditor.ready(function(K) {
+				editor = K.create('textarea[name="content"]', { 
+					width : '100%',
+					resizeType : 1,
+					allowPreviewEmoticons : false,
+					allowImageUpload : true,
+					items : [
+					 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+						'removeformat',  '|', 'emoticons', 'image', 'link','insertfile','insert_code','source']
+				});
+			});
+		</script>
+		<script type="text/javascript"><!--
+		google_ad_client = "ca-pub-7116729301372758";
+		/* 更多演示（728x90） */
+		google_ad_slot = "5052271949";
+		google_ad_width = 728;
+		google_ad_height = 90;
+		//-->
+		</script>
+</block>
+<block name="body">
+<div class="bbs_line">
+	<a href="__MODULE__/Index/index">首页</a>>
+	<a href=__MODULE__/Article/index>文章</a>>
+	<a href=__MODULE__/Article/add>投稿</a>
+</div>
+<div class="bbs_head">文明投稿（需要管理员审核才能显示出来）</div>
+	<div class="bbs_fl_line">
+		<form name="LoginForm" action="__URL__/add_do.html"enctype="multipart/form-data" method="post">
+			<p> 	快捷方式:<a href="javascript:onclick=codeAdd(); return false">插入代码</a>|<a href="javascript:onclick=urlAdd(); return false">插入超链接</a>|<a href="javascript:onclick=imgAdd(); return false">插入图片链接</a><p/>
+				<input name="title" type="text" class="input" placeholder="标题"  />
+			
+			<p>
+				<textarea name="content" id="content" style="width:700px;height:200px;visibility:hidden;"></textarea>
+			<p/>
+			文章类型:<select name="board_id">
+			<volist name="board_arr_" id="vo">
+				<option value="<{$vo.article_board_id}>"><{$vo.article_board_name}></option>
+			</volist>
+			</select>
+			<div class="we1">
+				<input name="csrf_token" type="hidden"   value= <{$csrf_token}> />
+				<input type="submit" name="submit" value="投稿" class="bbs_post"/>	
+			</div>
+		</form>
+	<a >如果无法上传附件或者文件,请更改换浏览器再试</a><br />
+
+	</div>
+</block>

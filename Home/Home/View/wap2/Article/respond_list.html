@@ -1,0 +1,21 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+<block name="body">
+<div class="bbs_head">标题：<{$title}></div>
+【评论列表】
+<hr>
+<volist name="list" id="vo" mod="20">
+<if condition="$mod%2 neq 0">
+<div class="bbs_ping_title">
+	<else/>
+	<div class="bbs_ping_title_two">
+</if>
+<{$count-$i+1}>楼:<a href=__MODULE__/Home/zone/id/<{$vo.respond_user_id}>.html><span style="color:#FFABAB"><{$vo.respond_user_name}></span></a>//(ID:<{$vo.respond_user_id}>):<{:ubb($vo["respond_content"])}><br/><b class="right" style="font-size:12px;">浏览器:<{:determinebrowser($vo["respond_browser"])}><br/>操作系统:<{:determineplatform($vo["respond_browser"])}></b>
+<span class="right"><{$vo.respond_time}></span></div>
+</volist>
+<{$page}>
+<a href="__CONTROLLER__/read/id/<{$article_id}>">返回</a>
+<hr>
+</block>

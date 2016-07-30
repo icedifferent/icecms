@@ -1,0 +1,19 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title>kuwo搜索结果_ICECMS</title>
+</block>
+<block name="body">
+<div class="top">
+<img src="__PUBLIC__/LOGO.png" alt="logo">
+</div>
+<foreach name="arr" item="vo">
+<a href ="http://www.kuwo.cn/yinyue/<{$vo.['1'][$i]}>"><{$vo.['2'][$i]}></a>  <button><a href ="__URL__/kuwsearchid/url/<{$vo.['1'][$i]}>">链接转换</a></button>
+	<hr>
+</foreach>
+<div class="title">当前是第<{$pages}>页(<{$count}>)</div>
+	<a href="__URL__/kuwsearchname/word/<{$word}>/pages/1">first page</a>
+	<if condition="$pages neq 1">
+	|<a href="__URL__/kuwsearchname/word/<{$word}>/pages/<{$pages-1}>">last page</a>
+	</if>
+	|<a href="__URL__/kuwsearchname/word/<{$word}>/pages/<{$pages+1}>">next page</a>
+</block>

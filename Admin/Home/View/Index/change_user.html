@@ -1,0 +1,29 @@
+<extend name="Public/body"/>
+<block name="title">
+<title>首页</title>
+</block>
+<block name="body">
+<br>
+<div class="tp">用户信息修改</div>
+<div class='box'>
+	<form method="post" action=__CONTROLLER__/change_user_do>
+	用户名:<input name="user_name" type="text" value="<{$user_name}>"><br>
+	EMAIL:<input name="user_email" type="text" value="<{$user_email}>"><br>
+	PHONE:<input name="user_phone" type="text" value="<{$user_phone}>"><br>
+	SEX:<input name="user_sex" type="text" value="<{$user_sex}>"><br>
+	头像地址:<input name="user_img" type="text" value="<{$user_img}>"><br>
+	状态:<input name="user_status" type="text" value="<{$user_status}>">
+	【0.未激活，1.普通用户，3.已经被禁言论坛发帖，4.总版主（删帖和修改帖子权限），5.管理员,6禁言聊天室，7，被禁言论坛回帖，8.被禁言所有，包括修改信息等，2.被禁止修改个人信息】<br>
+	签名:<textarea name="user_character" rows="2" cols="30" placeholder="签名"><{$user_character}></textarea><br>
+	违规内容:<input name="user_violations_content" type="text" value="<{$user_violations_content}>"><br>
+	钱:<input name="user_money" type="text" value="<{$user_money}>"><br>
+	密码:<input name="user_password" type="text" value="<{$user_password}>"><br>
+	积分:<input name="user_integral" type="text" value="<{$user_integral}>"><br>
+	等级:<input name="user_rank" type="text" value="<{$user_rank}>"><br>
+	<!--	空间代码:<input name="user_zone" type="text" value="<{$user_zone}>"><br>-->
+		<input name="id" type="hidden" value="<{$user_id}>"><br>
+		<input name="submit" type="submit" value="修改">
+	</form >
+</div>
+
+</block>

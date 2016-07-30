@@ -1,0 +1,122 @@
+<extend name="Public/body"/>
+<block name="title">
+<title>管理员首页</title>
+</block>
+<block name="body">
+你好:<{$admin_name}>--简单而又粗暴的后台管理（一般人不会用哦）
+<block name="body">
+<br>
+<div class="tp">1.网站配置</div>
+<div class='box'>
+	<form method="post" action=__CONTROLLER__/change>
+		网站名称:<input name="status_title" type="text" value="<{$status_title}>"><br>
+	<!--网站状态:<input name="status_status" type="text" value="<{$status_status}>">【1.为正常开放，2.禁言整个网站，3.禁言所有论坛，4.禁言聊天室】<br>-->
+		网站描述:<input name="status_describe" type="text" value="<{$status_describe}>"><br>
+		网站的关键字:<input name="status_key" type="text" value="<{$status_key}>"><br>
+		<!--网站公告:<input name="status_announce" type="text" value="<{$status_announce}>"><br>-->
+		<!--是否开启防范ddos:<input name="status_ddos" type="text" value="<{$status_ddos}>">【1为开启，0为关闭】<br>
+		防止ddos的10秒内最多可以刷新几次:<input name="status_ddos_times" type="text" value="<{$status_ddos_times}>"><br>-->
+		发帖赠送的积分数:<input name="s_integral" type="text" value="<{$s_integral}>"><br>
+		发帖赠送的金币数:<input name="s_money" type="text" value="<{$s_money}>"><br>
+		回帖赠送的金币数:<input name="r_money" type="text" value="<{$r_money}>"><br>
+		回帖赠送的积分数:<input name="r_integral" type="text" value="<{$r_integral}>"><br>
+		附件上传的最大大小:为php.ini配置里面默认的大小<br>
+		<!--附件上传的最大大小:<input name="f" type="text" value="<{$f}>">字节为单位<br>-->
+		注册方式:<input name="reg_method" type="text" value="<{$reg_method}>">【1.普通注册,4.关闭注册】<br>
+		网站底部内容:<textarea name="website_foot" rows="2" cols="80" ><{$website_foot}></textarea><br>
+		<input name="submit" type="submit" value="修改">
+	</form >
+</div>
+<hr/>
+<div class="tp">2.操作用户<a href="__CONTROLLER__/user_list">查看所有用户</a></div>
+<div class='box'>
+<form method="post" action=__CONTROLLER__/change_user>
+	输入用户ID:<input name="id" type="text"><br>
+		<input name="submit" type="submit" value="操作">
+	</form >
+</div>
+
+<hr/>
+<div class="tp">3.操作帖子(ID为帖子链接上面的id/xxx)<a href="__CONTROLLER__/post_list">查看所有帖子</a></div>
+<div class='box'>
+<form method="post" action=__CONTROLLER__/change_post>
+	输入帖子ID:<input name="id" type="text"><br>
+		<input name="submit" type="submit" value="操作">
+	</form >
+</div>
+
+<hr/>
+<div class="tp">4.操作文章(ID为文章链接上面的id/xxx)<a href="__CONTROLLER__/article_lists">查看所有文章</a></div>
+<div class='box'>
+<form method="post" action=__CONTROLLER__/change_article>
+	输入文章ID:<input name="id" type="text"><br>
+		<input name="submit" type="submit" value="操作">
+	</form >
+</div>
+
+<hr/>
+<div class="tp">5.论坛版块</div>
+<div class='box'>
+<form method="post" action=__CONTROLLER__/add_bbs_board>
+	输入版块名称:
+	<input name="name" type="text"><br>
+	<input name="submit" type="submit" value="增加">
+</form >
+	<volist name="b_board_arr_" id="vo">
+		<form method="post" action=__CONTROLLER__/change_bbs_board>
+			版块名称:<input name="name" type="text" value="<{$vo.bbs_board_name}>"/>
+			<input name="id" type="hidden" value="<{$vo.bbs_board_id}>"/>【ID:<{$vo.bbs_board_id}>】
+			<input name="submit" type="submit" value="修改">
+		</form >
+	</volist>
+</div>
+
+
+<hr/>
+<div class="tp">5.文章版块</div>
+<div class='box'>
+<form method="post" action=__CONTROLLER__/add_article_board>
+	输入版块名称:
+	<input name="name" type="text"><br>
+	<input name="submit" type="submit" value="增加">
+</form >
+	<volist name="a_board_arr_" id="vo">
+		<form method="post" action=__CONTROLLER__/change_article_board>
+			版块名称:<input name="name" type="text" value="<{$vo.article_board_name}>"/>
+			<input name="id" type="hidden" value="<{$vo.article_board_id}>"/>【ID:<{$vo.article_board_id}>】
+			<input name="submit" type="submit" value="修改">
+		</form >
+	</volist>
+</div>
+<hr/>
+<div class="tp"><a href=__CONTROLLER__/article_list>7.待审核文章</a>（<{$article_c}>篇待审）</div>
+<hr/>
+<div class="tp"><a href=__CONTROLLER__/add_article>8.后台增加文章</a></div>
+<hr/>
+
+<div class="tp"><a href=__CONTROLLER__/mysql>9.MYSQL的导入以及还原</a></div>
+<hr/>
+<div class="tp">无敌后台(需要了解数据结构哦)</div>
+<div class='box'>
+<form method="post" action=__CONTROLLER__/sql>
+	sql语句:<textarea name="sql" rows="2" cols="30" placeholder="SQL语句"></textarea><br>
+		<input name="submit" type="submit" value="执行">
+	</form >
+</div>
+<hr/>
+<div class="tp">修改管理员密码</div>
+<div class='box'>
+<form method="post" action=__CONTROLLER__/change_admin_pwd>
+	新管理员密码:<input name="content" rows="2" cols="30" placeholder="请输入新密码"><br>
+		<input name="submit" type="submit" value="执行">
+	</form >
+</div>
+<a href="http://icecms.cn">当前版本号：ICECMS　<{$Version}></a><br>
+<a href="http://icecms.cn">官方最新版本号:<{$mes}></a>
+<br>更新概况:<br>
+<{$readme}>
+<br />
+<a href="__MODULE__/Update">立即升级</a>(如当前已经是最新版本,请勿点击升级)
+<br>
+<a href="http://icecms.cn">ICECMS,自由开源</a>
+</block>

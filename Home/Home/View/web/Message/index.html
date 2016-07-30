@@ -1,0 +1,29 @@
+<extend name="web:Public:body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+<block name="body">
+<div class="content-wrap">
+	<div class="content">
+		<header class="archive-header">
+		</header>
+		<form method="post" action=__URL__/send_do>
+			<?php
+				if(!isset($_GET['id']))
+				$sign=0;
+				else
+				$sign=1;
+			?>
+	<if condition="$sign eq 0">
+	输入对方的ID:<input type="text" name="to_id"  placeholder="ID号"/><br>
+	<else/>
+	<input type="hidden" name="to_id" value="<{$id}>"/>
+	你正在向：<{$user_name}>(ID:<{$id}>)发送消息<br>
+	</if>
+	内　　容:<textarea name="content" class="input-block-level comt-area" cols="100%" rows="5"  placeholder="内容(<150字)"></textarea><br>
+	<input name="csrf_token" type="hidden"   value= <{$csrf_token}> />
+	<input name="submit" type="submit" class="bbs_post" value="发送">
+</form>
+	</div>
+</div>
+</block>

@@ -1,0 +1,123 @@
+
+<extend name="web:Public:body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+<style>
+	.hot { background: #FF2F00; }
+	.recommended { background: #5475C5; }
+	.bug { background: #BEBEBE; }	
+</style>
+
+
+     <block name="menhu">
+        <div id="nav-header" class="navbar" >
+		<ul class="nav">
+		<li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-has-children menu-item-13">
+		<a href="/">首页</a>
+		</li>
+		 <li id="menu-item-71" class="menu-item menu-item-type-article_type menu-item-object-page menu-item-71">
+        <a href="__MODULE__/Index/bbs">论坛交流</a></li>
+        <li id="menu-item-13" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-13">
+            <a href="__MODULE__/Article/board_list/id/1">互联网资讯</a>
+        </li>
+
+        <li id="menu-item-13" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-13">
+            <a href="__MODULE__/Article/board_list/id/4">科技头条</a>
+        </li>
+
+
+        <li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-6">
+            <a href="__MODULE__/Article/board_list/id/3">建站资讯</a>
+            </li>
+            
+        <li id="menu-item-69" class="menu-item menu-item-type-article_type menu-item-object-page menu-item-69">
+        <a href="__MODULE__/Article/board_list/id/2">编程知识</a></li>
+                <li id="menu-item-71" class="menu-item menu-item-type-article_type menu-item-object-page menu-item-71">
+        <a href="__MODULE__/Article/add">我要投稿</a></li>
+       
+        <li id="menu-item-67" class="menu-item menu-item-type-article_type menu-item-object-page menu-item-67">
+       		<a href="http://api.icecms.cn/">API</a>
+        </li>
+        <li id="menu-item-67" class="menu-item menu-item-type-article_type menu-item-object-page menu-item-67">
+       	 <a href="http://icecms.cn/about">ABOUT US</a>
+        </li>
+	<li style="float:right;">
+		<div class="toggle-search">
+            <i class="fa fa-search">
+            </i>
+		</div>
+        <div class="search-expand" style="display: none;">
+            <div class="search-expand-inner">
+                <form method="article" class="searchform" action="__MODULE__/Bbs/search">
+                    <div>
+            <input type="ext" class="search" name="content" value='输入内容并回车';" onfocus="if(this.value=='输入内容并回车')this.value='';" value="输入内容并回车">
+                    </div>
+                </form>
+            </div>
+        </div>
+	</li>
+</ul>
+</div>
+</block>
+<block name="body">
+<div class="content-wrap">
+	<div class="content">
+		<header class="archive-header" style="text-align:justify ; ">
+		</header>
+<volist name="a_list" id="vo" mod="10">
+<article class="excerpt"><header><h2>
+    <if condition="$mod+1 elt 3">
+		<img src="__PUBLIC__/images/pin_<{$mod+1}>.gif">
+		</if>
+
+    <a target="_blank" href="__MODULE__/Article/read/id/<{$vo.article_id}>.html" title="<{$vo.article_title}>"><{$vo.article_title}></a></h2>
+	</header>
+	<div class="focus">
+		<a target="_blank" href="__MODULE__/Article/read/id/<{$vo.article_id}>.html">
+
+			<?php
+				if(preg_match("/<img.*>/",$vo['article_content'])){
+                		preg_match_all('/src=(.*) /isU',$vo['article_content'],$arr);
+                    	echo "<img class='thumb' src={$arr[1][0]} alt={$vo['article_title']} height='200' width='200' />";
+                }else{
+                	echo "<img class='thumb' src='http://p3.pstatp.com/large/4995/5489802426' alt='c语言程序设计教程,ICECMS,java开发工具 ,java开发,web开发,网站编程,冰封cms,冰封,php是什么格式,程序员之家' height='200' width='200' />";
+                }
+			?>
+		</a>
+	</div>
+	<span class="note">
+		<?php
+					$content=$vo['article_content'];
+		$content=preg_replace('/\<.*\>/uisU'," ",$content);
+		echo 	$content= htmlspecialchars(sub_str($content,0,120,0)).'....';
+		?>
+		……<a href="__MODULE__/Article/read/id/<{$vo.article_id}>.html" rel="nofollow" class="more-link">查看更多 &raquo;</a></span><br/>
+<p class="auth-span">
+<span class="muted"><i class="fa fa-user"></i> 
+	<a href="__MODULE__/Home/zone/id/<{$vo.article_ower_id}>.html"><{$vo.article_ower_name}></a>
+
+</span>
+<span class="muted"><i class="fa fa-clock-o"></i>
+	<{$vo.article_date}>
+</span>	
+
+		<span class="muted">
+			<i class="fa fa-eye"></i>
+				<span class="count"><{$vo.article_hot}></span>阅</a>
+		</span></p>
+</article>
+</volist>
+	</div>
+</div>
+</block>
+<block name="you">
+	<div class="title">
+		<h2>
+			编程知识
+		</h2>
+	</div>
+            <volist name="a_list_b" id="vo" mod="10">
+	   	<a target="_blank" href="__MODULE__/Article/read/id/<{$vo.article_id}>.html" title="<{$vo.article_title}>"><{$vo.article_title}></a><br>
+    </volist>
+</block>

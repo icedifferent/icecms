@@ -1,0 +1,31 @@
+<extend name="./Public/body"/>
+	<block name="title">
+	<title><{$user_name}>个人中心</title>
+	</block>
+	<block name="body">
+	<div class="nav"><a href=__MODULE__/Message/index>信箱</a><a href=__URL__/zone/id/<{$user_id}>>我的空间</a><a href=__URL__/change_zone/>排版</a><a href=__MODULE__/Bbs/user_post/>我的帖子</a></div>
+		<a href=__MODULE__/Message/index/id/<{$user_id}>>发信息给TA</a>
+	<div class="top"></div>
+	<div class="title_bbs">
+		<ul class="user-titbox">
+	<li class="title_bbs">
+			<if condition="$user_img eq ''">
+				<img class="image" src="__PUBLIC__/Uploads/user_head/defalut.jpg" /> 
+			<else/>
+				<img class="image" src="__PUBLIC__/Uploads/user_head/<{$user_img}>" /> 
+			</if>
+		</li>
+<li class="title_bbs"><b>	ID:<{$user_id}><hr>
+<li class="title_bbs"><b>	用户名:<{$user_name}></span></li>
+<li class="title_bbs"><b>	邮箱:<{$user_email}></span></li>
+<li class="title_bbs"><b>	性别:<{$user_sex}></span></li>
+<li class="title_bbs"><b>	积分:<{$user_integral}></span></li>
+<li class="title_bbs"><b>	金币:<{$user_money}></span></li>
+<li class="title_bbs"><b>	身份:<{$user_rank}></span></li>
+<li class="title_bbs"><b>	回复总数:<{$user_respond_number}></span></li>
+<li class="title_bbs"><b>	帖子总数:<{$user_theme_number}></span></li>
+<li class="title_bbs"><b>	注册日期:<{$user_reg_date}></span></li>
+<li class="title_bbs"><b>	个性签名:<{$user_character}></span></li>
+</ul>
+	</div>
+	</block>

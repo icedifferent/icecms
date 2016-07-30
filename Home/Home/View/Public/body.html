@@ -1,0 +1,75 @@
+<!DOCTYPE html
+PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Language" content="zh-CN"/>
+<meta name=Copyright Content="本程序版权归ICE所有"/> 
+<meta name="Author-Corporation" content="ICE,2015"/>
+<meta name="description" content="<{$description}>"/>
+<meta name="keywords" content="<{$key}>"/>
+<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+<meta http-equiv="Cache-Control" content="must-revalidate,no-cache"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/home.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/bbs.css"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/box.css"/>
+<script src="__PUBLIC__/js/jquery.js"></script>
+<script src="__PUBLIC__/js/box.js"></script>
+<block name="title"></block>
+</head>
+<script language ="javascript" type ="text/javascript">
+function atAdd(at){
+	var content =document.getElementsByName("content")[0]
+			content.value+="@"+at+",";
+		//editor.html(editor.text()+'@'+at+",");
+}
+function urlAdd(){
+	var content =document.getElementsByName("content")[0];
+	content.value+="[url=http://链接地址]点击访问[/url]";
+	//editor.html(editor.text()+"[url=http://链接地址]点击访问[/url]");
+}
+function imgAdd(){
+	var content =document.getElementsByName("content")[0];
+	content.value+="[img]http://图片地址[/img]";
+	//editor.html(editor.text()+"[img]http://图片地址[/img]");
+}
+function codeAdd(){
+	var content =document.getElementsByName("content")[0];
+	content.value+="[code]//请在这里输入代码[/code]";
+	//editor.html(editor.text()+"[code]//请在这里输入代码[/code]");
+}
+</script>
+
+<style>
+input[id=number]{
+	width:60px;
+	height:25px;
+	border-width: 1px;
+	border-style: solid;
+	color:#d7d7d7;
+	}
+.num {color:#2084c6;background:#F0F3F9;border:1px #CCDDDD solid;}
+.current{background:#2084c6;color:#fff;border:1px solid #2084c6;}
+</style>
+<body>
+<block name="body"></block>
+<div class="nav">
+	<a href="__MODULE__/Index/index">门户</a>
+	<a href="__MODULE__/Index/bbs">论坛</a>
+	<a href="__MODULE__/Bbs/index">分类</a>
+	<a href="__MODULE__/Bbs/add">发帖</a>
+	<a href="__MODULE__/Home/dark_home">监狱</a>
+</div>
+<div class="foot">
+	Copyright 2015-2016 ICECMS.CN <br/>
+	联系邮箱:postmaster@icecms.cn
+	<!--	<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1254974892'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s11.cnzz.com/z_stat.php%3Fid%3D1254974892%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>--!>
+	<br/>
+	<a href="http://www.miitbeian.gov.cn" target="_blank">粤ICP备15008776号-2</a>
+</div>
+</body>
+</html>
+
+
+

@@ -1,0 +1,37 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title>添加账号_联通一起沃_ICECMS</title>
+</block>
+<block name="body">
+<div >联通17wo辅助平台</div>
+<div style="color:#F00">添加17wo账号方式1(账号密码登录,只获取cookie,不记录密码):</div>
+<form name="LoginForm" method="post" action="__URL__/wo_do" >
+	<div class="we">
+		<input id="word" name="mobile" type="text" class="input"  placeholder="17wo的手机号码"  /><br />
+		<input id="word" name="pass" type="password" class="input"  placeholder="17wo的登陆密码"  /><br />
+		<input id="word" name="check" type="text" class="input"  placeholder="输入验证码"  /><br /><img src="/tempimg/<{$filename}>">
+		<input id="word" name="cookie" type="hidden" class="input" value="<{$cookie}>" />
+	</div>
+	<div class="we1"><input type="submit" name="submit" value="立即增加"  class="bbs_post"/></div>
+	<div style="color:#F00">如没有显示验证码,请刷新本页面</div>
+</form>
+<?php //unlink($filename);?>
+<hr>
+<div style="color:#F00">添加17wo账号方式2(COOKIE登录,如有不懂,请使用方式1登录):</div>
+<form name="LoginForm" method="post" action="__URL__/wo_do" >
+	<div class="we">
+		<input id="word" name="mobile" type="text" class="input"  placeholder="手机号码"  /><br />
+		<input id="word" name="cuid" type="text" class="input"  placeholder="CUID cookie"  /><br />
+		<!--	<input id="word" name="sessionid" type="text" class="input"  placeholder="sessionid cookie"  />-->
+		<div>CUID cookie形如:mAVZ2hFXmHxFGaos1FFGFQ==</div>
+	</div>
+	<div class="we1"><input type="submit" name="submit" value="立即增加"  class="bbs_post"/></div>
+</form>
+
+<div class="we1"><a href="__URL__/wo">返回查看我的账户</a></div>
+		<div style="color:#F00">如有疑问请<a href="__MODULE__/Bbs/add">发帖提问</a></div>
+		<div >powered by ice</div>
+</block>
+
+
+

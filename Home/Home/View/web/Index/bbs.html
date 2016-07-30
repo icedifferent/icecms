@@ -1,0 +1,87 @@
+<extend name="web:Public:body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+<block name="body">
+<style>
+	.hot { background: #FF2F00; }
+	.recommended { background: #5475C5; }
+	.bug { background: #BEBEBE; }	
+</style>
+
+
+
+
+<div class="content-wrap">
+	<div class="content">
+		<header class="archive-header">
+        <div style="color:#F00"><{$msg}></div>
+	<div style="color:#F00"><{$atmsg}></div>	
+	分类查看
+		【<a title="" style="" href="__MODULE__/Bbs/board_list/id/1" >杂谈茶楼</a>】
+		【<a title="" style="" href="__MODULE__/Bbs/board_list/id/5">WEB/PHP/ASP/C#</a>】
+		【<a title="" style="" href="__MODULE__/Bbs/board_list/id/2">CSS/JAVASCRIPT/AJAX</a>】
+		【<a title="" href="__MODULE__/Bbs/board_list/id/6">C/C++/JAVA交流</a>】
+		【<a title="" href="__MODULE__/Bbs/board_list/id/8">LINUX/Windows</a>】<br/>
+		【<a title="" style="" href="__MODULE__/Bbs/board_list/id/3">ICECMS BUG提交</a>】
+		【<a title="" style=" " href="__MODULE__/Bbs/board_list/id/4">官方公告</a>】
+		</header>
+		<header class="archive-header" style="text-align:justify ; ">排序方式:
+		<a href="__MODULE__/Bbs/Last_Respond_Post" class="btn"  style="-webkit-border-radius: 15px; -moz-border-radius: 15px;  ">最新回复</a>
+		<a href="__MODULE__/Bbs/new_post"  class="btn"style="-webkit-border-radius: 15px; -moz-border-radius: 15px;  ">最新发表</a>
+		<a href="__MODULE__/Bbs/Good_Post" class="btn" style="-webkit-border-radius: 15px; -moz-border-radius: 15px;  ">精华帖子</a>
+		<a href="__MODULE__/Bbs/add" class="btn" style="-webkit-border-radius: 15px; -moz-border-radius: 15px;  ">我要发帖</a>
+		</header>
+	
+<volist name="list" id="vo" mod="10">
+<article class="excerpt">
+	<header><h2>
+    <if condition="$mod+1 elt 3">
+		<img src="__PUBLIC__/images/pin_<{$mod+1}>.gif">
+		</if>
+	<if condition="$vo['post_status'] eq 5">
+		【精华】
+	</if>
+    <a target="_blank" href="__MODULE__/bbs/read/id/<{$vo.post_id}>.html" title="<{$vo.post_title}>"><{$vo.post_title}></a></h2>
+	</header>
+	<div class="focus">
+		<a target="_blank" href="__MODULE__/bbs/read/id/<{$vo.post_id}>.html">
+			<?php
+				/*$user=M('User');
+				$id=$vo['post_ower_id'];
+				$user_img=$user->where("user_id='$id'")->getField('user_img');
+				if($user_img==''){
+					echo '<img class="image" src="__PUBLIC__/Uploads/user_head/defalut.jpg" alt="'.$vo['post_title'].'" />';
+				}else{
+					echo '<img class="image" src="__PUBLIC__/Uploads/user_head/'.$user_img.'" alt="'.$vo['post_title'].'" />';
+				}*/
+			?>
+		</a>
+	</div>
+	<span class="note">
+		<?php
+					$content=$vo['post_content'];
+		$content=preg_replace('/\<.*\>/uisU'," ",$content);
+		echo 	$content= htmlspecialchars(sub_str($content,0,120,0)).'....';
+		?>
+		……<a href="__MODULE__/bbs/read/id/<{$vo.post_id}>.html" rel="nofollow" class="more-link">查看更多 &raquo;</a></span><br/>
+<p class="auth-span">
+<span class="muted"><i class="fa fa-user"></i> 
+	<a href="__MODULE__/Home/zone/id/<{$vo.post_ower_id}>.html"><{$vo.post_ower_name}></a>
+
+</span>
+<span class="muted"><i class="fa fa-clock-o"></i>
+	<{$vo.post_date}>
+</span>	
+
+		<span class="muted">
+			<i class="fa fa-eye"></i>
+				<span class="count"><{$vo.post_hot}></span>阅</a>
+		</span></p>
+</article>
+</volist>
+<{$page}>
+	</div>
+</div>
+
+</block>

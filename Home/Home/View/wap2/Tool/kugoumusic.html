@@ -1,0 +1,16 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title>音乐搜索_ICECMS</title>
+</block>
+<block name="body">
+<div class="title">音乐搜索</div>
+<form name="LoginForm" method="get" action="__URL__/searchkugoumusic.html" >
+	<div class="we">请输入歌名或者歌手名字:
+		<input id="word" name="word" type="text" class="input"  placeholder="歌名/歌手名称"  />
+	</div>
+	<div class="we1"><input type="submit" name="submit" value="搜索"  class="bbs_post"/></div>
+</form>
+<div style="color:#F00">歌曲均来源于酷狗音乐<br />
+采用并发执行方式,优化搜索速度</div>
+</block>
+

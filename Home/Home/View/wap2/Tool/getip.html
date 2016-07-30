@@ -1,0 +1,19 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title>获取代理ip_ICECMS</title>
+</block>
+<block name="body">
+平均有效期45分钟
+<div style="color:#F00"><{$updatetime}></div>
+<a href="__MODULE__/Tool/getip/sort/china_high">国内高匿</a>|<a href="__MODULE__/Tool/getip/sort/china_normal">国内透明</a>|<a href="__MODULE__/Tool/getip/sort/foreign_normal">国外透明</a>|<a href="__MODULE__/Tool/getip/sort/foreign_high">国外高匿</a>
+<div>ip|端口|国家|省份|匿名度|类型|最后检查时间</div>
+		<foreach name="data" item="vo">
+		<{$vo.ip}>:<{$vo.port}>|<{$vo.country}>|<{$vo.province}>|<{$vo.degree}>|<{$vo.type}>|<{$vo.checktime}>
+		<hr>
+		</foreach>
+			<div style="color:#F00">API接口已经开放,请勿爬此网页,谢谢合作</div>
+		<div style="color:#F00">如有疑问请<a href="__MODULE__/Bbs/add">发帖提问</a></div>
+</block>
+
+
+

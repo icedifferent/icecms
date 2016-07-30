@@ -1,0 +1,22 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title>自由ICECMS</title>
+</block>
+<block name="body">
+<div class="top"><a href=__MODULE__/Index/index>首页</a>>自由ICECMS空间排版</div>
+<ul class="user-titbox">
+	<div class='box'>
+		排版可以使用任意的css/js/html等
+		<div class="bbs_fl_line">
+	<form action="__URL__/zone_do" method="post">
+		<li class="title_bbs">	
+		<textarea rows="6" cols="40" type="text" name="content" placeholder="自由排版" /><{$zone}></textarea>
+		</li>
+			<input type="submit" name="submit" value="修改" class="bbs_post"/>	
+	</form>
+	<a href=__URL__/index>返回</a>
+		</div>
+	</div>
+</ul>
+</block>
+

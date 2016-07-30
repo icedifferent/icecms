@@ -1,0 +1,56 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title><{$title}></title>
+<meta name="description" content="<{$description}>"/>
+<meta name="keywords" content="<{$key}>"/>
+<style>
+	.hot { background: #FF2F00; }
+	.recommended { background: #5475C5; }
+	.bug { background: #BEBEBE; }	
+</style>
+</block>
+<block name="body">
+<div id="mess"><{$msg}></div>
+<div id="mess"><{$atmsg}></div>
+<header class="head">
+<if condition="$user_name eq ''">
+<a href="__MODULE__/Login"><span>登录</span></a> <a href="__MODULE__/Login/reg"><span>注册</span></a>
+</if>
+</header>
+<img src="__PUBLIC__/LOGO.png" alt="logo" width=25% style="float: left;"><div style="float: right;"><a href="__MODULE__/Index/bbs">论坛首页</a><br /><a href="__MODULE__/Article/add">我要投稿</a></div><br /><br />
+<div class="subnav" style="background:   #0080FF; !important" 	>
+	<ul>
+		<li>		<a href="__MODULE__/Article/board_list/id/1">网络资讯</a></li>
+		<li>	<a href="__MODULE__/Article/board_list/id/4">科技头条</a></li>
+		<li>	<a href="__MODULE__/Article/board_list/id/3">建站资讯</a></li>
+		<li>	<a href="__MODULE__/Article/board_list/id/2">编程知识</a></li>
+	</ul>
+</div>
+
+<div class="sutitle">互联网极速资讯:7X24</div>
+<volist name="a_list" id="vo" mod="8">
+
+	<div style=" width: 100%; height:80px">
+<?php
+	
+		if(preg_match("/<img.*>/",$vo['article_content'])){
+                	preg_match_all('/src=(.*) /isU',$vo['article_content'],$arr);
+                    	echo "<img class='thumb' src={$arr[1][0]} alt={$vo['article_title']} height='80' width='80' style=' float: left; '/>";
+                }else{
+               		echo "<img class='thumb' src='http://p3.pstatp.com/large/4995/5489802426' alt='c语言程序设计教程,ICECMS,java开发工具 ,java开发,web开发,网站编程,冰封cms,冰封,php是什么格式,程序员之家' height='80' width='80' style=' float: left; '/>";
+                }
+		?>
+		<div style="color: #BEBEBE;!important">
+			<b><a  href="__MODULE__/Article/read/id/<{$vo.article_id}>.html" style="color: #000000;!important"><{$vo.article_title}></a></b>
+	<?php
+		$content=$vo['article_content'];
+		$content=preg_replace('/\<.*\>/uisU'," ",$content);
+		echo 	$content= htmlspecialchars(sub_str($content,0,60,0)).'....';
+		?>
+	</div>
+</div>
+<br size=1  >
+	<!--<hr size=1 style="color: blue;border-style:dotted;width:100%"> -->
+</volist>
+<{$website_foot}>
+</block>

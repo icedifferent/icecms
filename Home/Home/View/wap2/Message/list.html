@@ -1,0 +1,27 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+<block name="body">
+<div class="bbs_line"><a href="__MODULE__/Index/index">首页</a>><a href=__URL__/sended>已发送</a>><a href=__URL__/receive>已接收</a>><a href=__URL__/atreceive>@消息</a>><a href=__URL__/index>发消息</a></div>
+<volist name="list" id="vo" mod="20">
+<if condition="$mod%2 neq 0">
+<div class="bbs_ping_title">
+	<else/>
+	<div class="bbs_ping_title_two">
+</if>
+<{$mod+1}>.
+<div class="content"><{$vo.message_content}></div>
+<br>发件方：<a href=__MODULE__/Home/zone/id/<{$vo.message_from_id}>><span style="color:#FFABAB"><{$vo.message_from_name}></span></a>//(ID:<{$vo.message_from_id}>)<br>
+收件方：<a href=__MODULE__/Home/zone/id/<{$vo.message_to_id}>><span style="color:#FFABAB"><{$vo.message_to_name}></span></a>//(ID:<{$vo.message_to_id}>)<br>
+<span class="right"><{$vo.message_send_time}><br>
+<if condition="$vo['message_if_read'] eq 1">
+对方已读
+<else/>
+对方未读
+</if>
+</span></div>
+</volist>
+<{$page}>
+<a href="__URL__/index">返回</a>
+</block>

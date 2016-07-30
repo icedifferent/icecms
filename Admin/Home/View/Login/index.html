@@ -1,0 +1,32 @@
+<extend name="Public/body"/>
+<block name="title">
+<title>登陆</title>
+</block>
+<block name="body">
+<div class="tp"><{$title}></div>
+<fieldset>
+<div class="tp">管理员登陆</div>
+<form name="LoginForm" method="post" action="__URL__/do_login.html" >
+<p>
+<label for="adminname" class="label">用户名:</label>
+<input id="adminname" name="admin_name" type="text" class="input"  placeholder="昵称,手机号码,邮箱"  />
+<p/>
+<hr>
+<p>
+<label for="password" class="label">密　码:</label>
+<input id="password" name="admin_password" type="password" class="input" placeholder="密码" />
+<p/>
+<hr>
+<p>
+<label for="password" class="label">验证码:</label>
+<input id="code" name="code" type="text" class="input" placeholder="验证码" />
+<img src='__MODULE__/Public/code'onclick="this.src=this.src+'?'+Math.random()"/>
+<p/>
+<p>
+<input type="submit" name="submit" value="登陆" class="left" />
+</p>
+</form>
+<a>忘记密码的话请自行到数据库中修改，MD5加密的</a>
+</fieldset>
+</block>
+

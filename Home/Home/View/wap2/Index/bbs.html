@@ -1,0 +1,103 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title><{$title}></title>
+<meta name="description" content="<{$description}>"/>
+<meta name="keywords" content="<{$key}>"/>
+<style>
+	.hot { background: #FF2F00; }
+	.recommended { background: #5475C5; }
+	.bug { background: #BEBEBE; }	
+
+.right {
+    font-size: 14px;
+    float: right;
+    color: #999999;
+    margin-right: 5px;
+}
+	
+</style>
+</block>
+<block name="body">
+<div id="mess"><{$msg}></div>
+<div id="mess"><{$atmsg}></div>
+<header class="head">
+<if condition="$user_name eq ''">
+<a href="__MODULE__/Login"><span>登录</span></a> <a href="__MODULE__/Login/reg"><span>注册</span></a>
+</if>
+</header>
+<img src="__PUBLIC__/LOGO.png" alt="logo" width=25% style="float: left;"><div style="float: right;"><a href="/">门户首页</a></div><br /><br />
+
+<div class="nav">
+	<a href="__MODULE__/Home">资料</a>
+	<a href="__MODULE__/Bbs/">论坛</a>
+	<a href="__MODULE__/Bbs/add">发帖</a>
+	<a href="__MODULE__/Article/add">投稿</a> 
+	<a href="http://api.icecms.cn/">API</a>
+</div>
+<div class="nav">
+	<a href="__MODULE__/Bbs/new_post">最新帖子</a>
+	<a href="__MODULE__/Message">信箱</a>
+	<a href="__MODULE__/Bbs/">搜索</a>
+	<a href="__MODULE__/Home/dark_home">黑屋</a>
+	<a href="__MODULE__/Bbs/user_post">我的帖子</a>
+</div>
+
+
+<div class="sutitle">
+	<a href=__MODULE__/Bbs/><img src="__PUBLIC__/images/huo.gif">论坛>>更多板块>></a>
+</div>
+
+【<a href="__MODULE__/Bbs/board_list/id/1">杂 谈 茶 楼</a>】
+【<a href="__MODULE__/Bbs/board_list/id/5">WEB /PHP /C#</a>】<br>
+【<a href="__MODULE__/Bbs/board_list/id/6">C /C++ /JAVA</a>】
+【<a href="__MODULE__/Bbs/board_list/id/8">LINUX  /Windows</a>】
+
+<div class="sutitle">
+	<a href=__MODULE__/Bbs/Last_Respond_Post>最新回复</a>
+	|<a href=__MODULE__/Bbs/new_post>新帖</a>
+	|<a href=__MODULE__/Bbs/Good_Post>精华</a>
+	<a href=__MODULE__/Bbs/add><span class="right">发帖</span></a>
+
+</div>
+<div style="padding:5px 5px;">
+	<volist name="list" id="vo" mod="5" offset="0" length='5'>
+ 
+	<a  href="__MODULE__/bbs/read/id/<{$vo.post_id}>.html">
+				<img src="__PUBLIC__/images/<{$i}>.gif">
+				<if condition="$vo['post_status'] eq 5">
+					【精华】
+				</if>
+					<{$vo.post_title}>
+				</a>
+				<div style="color: #999999;padding:5px 5px; border-bottom-width: 1px;border-bottom-style: solid;border-bottom-color: rgb(239, 239, 239);">	
+			<?php
+				$content=$vo['post_content'];
+				$content=preg_replace('/\<.*\>/uisU'," ",$content);
+				echo 	$content= htmlspecialchars(sub_str($content,0,30,0)).'....';
+			?>
+			</div>
+		
+			</volist>
+		</div>
+<div class="sutitle">在线工具</div>
+<div class="title_bbs">
+	<a href="__MODULE__/Tool/kugoumusic"  style="float: left;">【音乐搜索】</a>
+	<a href="/tool/domaindecode.php"style="float: right;">【中文域名编码/解码】</a><br />
+
+	<a href="/tool/decode.php"  style="float: left;">【编码解码器】</a>
+	<a href="/tool/htmledit.php"style="float: right;">【HTML在线编辑】</a><br />
+
+	<a href="/tool/http.php"  style="float: left;">【HTTP浏览器请求查看】</a>
+	<a href="/tool/mine-type.php"style="float: right;">【MINE-TYPE对照表】</a><br />
+
+	<a href="/tool/viewhtml.php"  style="float: left;">【源代码查看】</a>
+	<a href="/tool/whois.php"style="float: right;">【域名whois查看】</a><br />
+
+	<a href="/Home/Tool/wo"  style="float: left;">【联通17wo辅助】</a>
+	<a href="/Home/Tool/getip"style="float: right;">【获取代理IP】</a><br />
+
+	<a href="/tool/baidu"  style="float: left;">【无限注册百度账号】</a>
+	<a href="/tool/tieba"style="float: right;">【查看贴吧用户的隐藏信息】</a><br />
+</div>
+</block>
+

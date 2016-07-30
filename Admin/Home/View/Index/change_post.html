@@ -1,0 +1,19 @@
+<extend name="Public/body"/>
+<block name="title">
+<title>首页</title>
+</block>
+<block name="body">
+<br>
+<div class="tp">帖子信息修改</div>
+<div class='box'>
+	<form method="post" action=__CONTROLLER__/change_post_do>
+		帖子标题:<input name="post_title" type="text" value="<{$post_title}>"><br>
+		帖子内容:<textarea name="post_content" rows="2" cols="30" ><{$post_content}></textarea><br>
+		帖子版块id:<input name="post_board_id" type="text" value="<{$post_board_id}>"><br>
+		帖子浏览量:<input name="post_hot" type="text" value="<{$post_hot}>"><br>
+		帖子状态:<input name="post_status" type="text" value="<{$post_status}>">【0.被锁定，禁止回复，可查看。2.被屏蔽内容。3.被删除。4.被置顶.5被加精】<br>
+			<input name="id" type="hidden" value="<{$post_id}>"><br>
+		<input name="submit" type="submit" value="修改">
+	</form >
+</div>
+</block>

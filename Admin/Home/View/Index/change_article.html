@@ -1,0 +1,23 @@
+<extend name="Public/body"/>
+<block name="title">
+<title>首页</title>
+</block>
+<block name="body">
+<br>
+<div class="tp">文章信息修改</div>
+<div class='box'>
+	<form method="post" action=__CONTROLLER__/change_article_do>
+		文章标题:<input name="article_title" type="text" value="<{$article_title}>"><br>
+		文章内容:<textarea name="article_content" rows="2" cols="30" ><{$article_content}></textarea><br>
+		文章浏览量:<input name="article_hot" type="text" value="<{$article_hot}>"><br>
+		文章状态:<input name="article_status" type="text" value="<{$article_status}>"><br>
+【0.被锁定，禁止回复，可查看。1.正常 2.被屏蔽内容。
+3.被删除。5.被置顶.6被加精】<br>
+		文章版块ID:<input name="article_board_id" type="text" value="<{$article_board_id}>"><br>
+		文章赞:<input name="article_praise_times" type="text" value="<{$article_praise_times}>"><br>
+		文章贬:<input name="article_lookdown_times" type="text" value="<{$article_lookdown_times}>"><br>
+		<input name="id" type="hidden" value="<{$article_id}>"><br>
+		<input name="submit" type="submit" value="修改">
+	</form >
+</div>
+</block>

@@ -1,0 +1,99 @@
+<extend name="web:Public:body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+
+     <block name="menhu">
+        <div id="nav-header" class="navbar" style="border-bottom: 4px solid #616161 ;">
+		<ul class="nav">
+		<li id="menu-item-8" class="menu-item menu-item-type-taxonomy menu-item-object-category current-menu-item menu-item-has-children menu-item-13">
+		<a href="/">门户首页</a>
+   		</li>
+        <li id="menu-item-13" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-13">
+            <a href="__MODULE__/Article/board_list/id/1">互联网资讯</a>
+        </li>
+
+        <li id="menu-item-13" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-13">
+            <a href="__MODULE__/Article/board_list/id/4">科技头条</a>
+        </li>
+
+
+        <li id="menu-item-6" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-has-children menu-item-6">
+            <a href="__MODULE__/Article/board_list/id/3">建站资讯</a>
+            </li>
+            
+        <li id="menu-item-69" class="menu-item menu-item-type-article_type menu-item-object-page menu-item-69">
+        <a href="__MODULE__/Article/board_list/id/2">编程知识</a></li>
+                <li id="menu-item-71" class="menu-item menu-item-type-article_type menu-item-object-page menu-item-71">
+        <a href="__MODULE__/Article/add">我要投稿</a></li>
+        <li id="menu-item-71" class="menu-item menu-item-type-article_type menu-item-object-page menu-item-71">
+        <a href="__MODULE__/Index/bbs">论坛交流</a></li>
+        <li id="menu-item-67" class="menu-item menu-item-type-article_type menu-item-object-page menu-item-67">
+       		<a href="http://api.icecms.cn/">API</a>
+        </li>
+        <li id="menu-item-67" class="menu-item menu-item-type-article_type menu-item-object-page menu-item-67">
+       	 <a href="http://icecms.cn/about">ABOUT US</a>
+        </li>
+	<li style="float:right;">
+		<div class="toggle-search">
+            <i class="fa fa-search">
+            </i>
+		</div>
+        <div class="search-expand" style="display: none;">
+            <div class="search-expand-inner">
+                <form method="article" class="searchform" action="__MODULE__/Bbs/search">
+                    <div>
+            <input type="ext" class="search" name="content" value='输入内容并回车';" onfocus="if(this.value=='输入内容并回车')this.value='';" value="输入内容并回车">
+                    </div>
+                </form>
+            </div>
+        </div>
+	</li>
+</ul>
+</div>
+</block>
+
+<block name="body">
+<div class="content-wrap">
+	<div class="content">
+		<header class="archive-header">
+		</header>
+		<header>
+		<h2><a target="_blank" href="__CONTROLLER__/read/id/<{$article_id}>.html" title="<{$title}>"><{$title}></a></h2>
+		</header>
+<volist name="list" id="vo" mod="8">
+<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-24">
+<div class="c-avatar">
+			<div class="c-main" id="div-comment-24">
+
+		<span class="note">
+			<{:ubb($vo["respond_content"])}><br/><p><{$vo.respond_browser}></p>
+		</span>
+	<p class="auth-span">
+		<span class="muted"><i class="fa fa-user"></i> 
+			<a href="__MODULE__/Home/zone/id/<{$vo.respond_user_id}>.html"><{$vo.respond_user_name}></a>(ID:<{$vo.respond_user_id}>)
+		</span>
+		<span class="muted"><i class="fa fa-clock-o"></i>
+			<{$vo.respond_time}>
+		</span>	
+		</p>
+</div>
+		</div>
+		
+	</li>
+</volist>
+	</div>
+	<{$page}>
+</div>
+</block>
+
+<block name="you">
+	<div class="title">
+		<h2>
+			编程知识
+		</h2>
+	</div>
+            <volist name="a_list_b" id="vo" mod="10">
+	   	<a target="_blank" href="__MODULE__/Article/read/id/<{$vo.article_id}>.html" title="<{$vo.article_title}>"><{$vo.article_title}></a><br>
+    </volist>
+</block>

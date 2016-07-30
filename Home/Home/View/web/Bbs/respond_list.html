@@ -1,0 +1,37 @@
+<extend name="web:Public:body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+<block name="body">
+<div class="content-wrap">
+	<div class="content">
+		<header class="archive-header">
+		</header>
+		<header>
+		<h2><a target="_blank" href="__CONTROLLER__/read/id/<{$post_id}>.html" title="<{$title}>"><{$title}></a></h2>
+		</header>
+<volist name="list" id="vo" mod="8">
+<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-24">
+<div class="c-avatar">
+			<div class="c-main" id="div-comment-24">
+
+		<span class="note">
+			<{:ubb($vo["respond_content"])}><br/><p><{$vo.respond_browser}></p>
+		</span>
+	<p class="auth-span">
+		<span class="muted"><i class="fa fa-user"></i> 
+			<a href="__MODULE__/Home/zone/id/<{$vo.respond_user_id}>.html"><{$vo.respond_user_name}></a>(ID:<{$vo.respond_user_id}>)
+		</span>
+		<span class="muted"><i class="fa fa-clock-o"></i>
+			<{$vo.respond_time}>
+		</span>	
+	</p>
+	</div>
+		</div>
+		
+	</li>
+</volist>
+	</div>
+	<{$page}>
+</div>
+</block>

@@ -1,0 +1,25 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+<block name="body">
+<div class="bbs_line"><a href="__MODULE__/Index/index">首页</a>><a href=__URL__/sended>已发送</a>><a href=__URL__/receive>已接收</a>><a href=__URL__/atreceive>@消息</a>><a href=__URL__/index>发消息</a></div>
+<form method="post" action=__URL__/send_do>
+		<?php
+				if(!isset($_GET['id']))
+				$sign=0;
+				else
+				$sign=1;
+		?>
+	<if condition="$sign eq 0">
+	输入对方的ID:<input type="text" name="to_id"  placeholder="ID号"/><br>
+	<else/>
+	<input type="hidden" name="to_id" value="<{$id}>"/>
+	你正在向：<{$user_name}>(ID:<{$id}>)发送消息<br>
+	</if>
+	内　　容:<textarea name="content" rows="6" cols="40" placeholder="内容(<150字)"></textarea><br>
+	<input name="csrf_token" type="hidden"   value= <{$csrf_token}> />
+<input name="submit" type="submit" class="bbs_post" value="发送">
+</form>
+<a href="__MODULE__/Home/">返回</a>
+</block>

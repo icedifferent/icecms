@@ -1,0 +1,67 @@
+<extend name="web:Public:body"/>
+<block name="title">
+<title>投稿</title>
+<script charset="utf-8" src="__PUBLIC__/editor/kindeditor-min.js"></script>
+<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>
+<script>
+	
+		KindEditor.plugin('insert_code', function(K) {  
+  			 var editor = this, name = 'insert_code';  
+  			 // 点击图标时执行  
+  			 editor.clickToolbar(name, function() {  
+				editor.insertHtml('[code]//请在这里写代码 [/code]');  
+  			 });  
+		});  
+		KindEditor.lang({  
+           	         insert_code : '插入代码'  
+		});
+	
+		KindEditor.options.filterMode = true;
+       	var editor;
+			KindEditor.ready(function(K) {
+				editor = K.create('textarea[name="content"]', {						newlineTag : "br",
+					 width : '100%',
+					resizeType : 1,
+					allowPreviewEmoticons : false,
+					allowImageUpload : true,
+					items : [
+						 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+						'removeformat',  '|', 'emoticons', 'image', 'link','insertfile','insert_code','source']
+					});
+
+			
+       			
+			
+					
+			});
+</script>
+</block>
+<block name="body">
+<div class="content-wrap">
+	<div class="content">
+		<header class="archive-header">
+	文明投稿（需要管理员审核才能显示出来）
+		</header>
+<form name="LoginForm" action="__URL__/add_do.html"enctype="multipart/form-data" method="post">
+	选择文章分类:<select name="board_id">
+<volist name="board_arr_" id="vo">
+<option value="<{$vo.article_board_id}>"><{$vo.article_board_name}></option>
+</volist>
+	</select><input name="title" type="text"  style="width:400px" class="input" placeholder="标题"  />
+	<p>
+		<textarea id="editor_id" name="content" style="width:700px;height:300px;">
+	
+		</textarea>
+	<br>
+	<p/>
+	
+	<div class="we1" style ="text-align:center;">
+		
+		<input name="csrf_token" type="hidden"   value= <{$csrf_token}> />
+	<input type="submit" name="submit" value="投稿" class="btn btn-primary"/>	
+		</div>
+	</p>
+</form>
+</div>
+	</div>
+</block>

@@ -1,0 +1,22 @@
+<extend name="Public/body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+<block name="body">
+<div class="tp"><{$title}></div>
+【建议在数据库中导出和导入】
+<hr>
+<form method="post" action="__CONTROLLER__/backup" enctype="multipart/form-data">
+	【数据库SQL文件】：
+	<input id="sqlFile" name="sqlFile" type="file" />
+	<input name="sign" type="hidden" value="1" /> 
+	<input id="submit" name="submit" type="submit" value="还原SQL" /> 
+</form> 
+<hr>
+<form name="form1" method="post" action="__CONTROLLER__/backup">
+	<input  name="sign" type="hidden" value="0" /> 
+<input id="submit" name="submit" type="submit" value="备份SQL数据" /> 
+</form> 
+<a href="__CONTROLLER__">返回</a>
+<hr>
+</block>

@@ -1,0 +1,42 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title>登陆</title>
+	<script>
+	$(function(){
+         var ajaxUrl = Document.URL;
+	     document.getElementById("user_name").onblur=function(){ 
+             $.post('__URL__/checkuser',{'user_name':$("#user_name").val()},function(json){
+		     if(json.status == 1){
+			     $("#result").html("<img src=__PUBLIC__/images/is_ok.png>");
+		     }else{
+		    	 $("#result").html("用户名不存在");
+              	      }
+		 });
+	 }
+     })
+     </script>
+</block>
+<block name="body">
+<div class="top"><{$title}></div>
+<form name="LoginForm" method="post" action="__URL__/do_login.html" >
+<div class="we">用户名:
+<input id="user_name" name="user_name" type="text" class="input"  placeholder="昵称,ID"  /> <a id="result"></a>
+</div>
+
+<div class="we">密　码:
+<input id="password" name="user_password" type="password" class="input" placeholder="密码" />
+</div>
+<div class="we">验证码:
+<input id="code" name="code" type="text" class="input" placeholder="验证码" />
+<br>
+<img src='__MODULE__/Public/code'onclick="this.src=this.src+'?'+Math.random()"/>
+</div>
+<div class="we">
+通过什么登陆:<input id="m" name="m" type="radio" class="input" value="name"  checked=checked/>呢称
+<input id="m" name="m" type="radio" class="input" value="id" />ID
+</div>
+<div class="we1"><input type="submit" name="submit" value="登陆"  class="bbs_post"/></div>
+<div class="we">没有帐号？马上
+	<a href="__URL__/reg.html">注册</a>OR<a href=__MODULE__/Home/password>忘记密码</a></div>
+</form>
+</block>

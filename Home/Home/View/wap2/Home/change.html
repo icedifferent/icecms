@@ -1,0 +1,26 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title><{$user_name}>_修改人资料</title>
+</block>
+<block name="body">
+<div class="top"><a href=__MODULE__/Index/index>首页</a>>修改人资料</div>
+<ul class="user-titbox">
+	<div class='box'>
+		<div class="bbs_fl_line">
+	<form action="__URL__/change_do" method="post">
+	<li class="title_bbs">	昵称：<input type="text" name="user_name" id="user_name" value="<{$user_name}>"/>(1-10个字内)</li>
+	<li class="title_bbs">	邮箱：<input type="text" name="user_email"id="user_email" value="<{$user_email}>" /></li>
+	<li class="title_bbs">	身份：<input type="text" name="user_rank"value="<{$user_rank}>"/>(10个字内)</li>
+	<li class="title_bbs">	个性签名(40个字内)：<textarea  type="text" name="user_character"/><{$user_character}></textarea></li>
+	<li class="title_bbs">	性别：<input name="user_sex" type="radio" value="男" checked=checked/>男
+	<input name="user_sex" type="radio" value="女"/>女</li>
+	<li class="title_bbs">	新密码：<input type="password" name="user_password" placeholder="新密码" />（不修改留空）</li>
+	<li class="title_bbs">	确认新密码：<input type="password" name="new_password" placeholder="重复输入新密码" />（不修改留空）</li>
+<input name="csrf_token" type="hidden"   value= <{$csrf_token}> />
+	<input type="submit" name="submit"  class="bbs_post" value="确定修改"/>
+	</form>
+	<a href=__URL__/index>返回</a>
+		</div>
+	</div>
+</ul>
+</block>

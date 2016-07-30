@@ -1,0 +1,28 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title><{$word}>_ICECMS</title>
+</block>
+<block name="body">
+<div class="title"><{$word}></div>
+<foreach name="m_arr" item="vo">
+	<div class="content">歌手:<{$vo.singername}>||歌名:<{$vo.music_name}><br />
+		<if condition="$vo['mp3url'] neq ''">
+		MP3格式下载地址:<br/ >
+		<input  type="text" class="input" value="<{$vo.mp3url}>"  /><a href="<{$vo.mp3url}>">点击下载</a>
+		<br/ >
+		</if>
+		<if condition="$vo['m4aurl'] neq ''">
+		M4A格式下载地址:<br/ >
+		<input  type="text" class="input" value="<{$vo.m4aurl}>"  /><a href="<{$m4aurl}>">点击下载</a>
+		</if>
+	</div>
+	<hr>
+</foreach>
+	<div class="title">当前是第<{$pages}>页(我也不知道有多少页)</div>
+	<a href="__URL__/searchkugoumusic/word/<{$word}>/pages/1">first page</a>
+	<if condition="$pages neq 1">
+	|<a href="__URL__/searchkugoumusic/word/<{$word}>/pages/<{$pages-1}>">last page</a>
+	</if>
+	|<a href="__URL__/searchkugoumusic/word/<{$word}>/pages/<{$pages+1}>">next page</a>
+</block>
+

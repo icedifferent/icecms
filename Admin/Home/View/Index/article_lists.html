@@ -1,0 +1,18 @@
+<extend name="Public/body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+<block name="body">
+<div class="tp"><{$title}></div>
+<hr>
+<volist name="list" id="vo" mod="20">
+<{$mod+1}>
+：ID:<{$vo.article_id}>|<{$vo.article_title}>
+<br>作者:<{$vo.article_ower_id}>|<{$vo.article_ower_name}>
+(<{$vo.article_date}>)<a href="__CONTROLLER__/change_article/id/<{$vo.article_id}>">其他操作</a>|<a href="__CONTROLLER__/change_article_do/id/<{$vo.article_id}>/article_status/3">删除</a><hr>
+</volist>
+<{$page}>
+<a href="__CONTROLLER__">返回</a>
+<hr>
+</block>
+

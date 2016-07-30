@@ -1,0 +1,45 @@
+<extend name="web:Public:body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+<block name="body">
+<div class="content-wrap">
+	<div class="content">
+		<header class="archive-header">
+		</header>
+		<header>
+		<h2><{$title}></h2>
+		</header>
+<volist name="list" id="vo" mod="8">
+<li class="comment byuser comment-author-admin bypostauthor even thread-even depth-1" id="comment-24">
+<div class="c-avatar">	<img data-original="__PUBLIC__/images/nohead.jpg" class="avatar avatar-108" height="50px" width="50px">
+			<div class="c-main" id="div-comment-24">
+
+		<span class="note">
+		<{$vo.message_content}>
+		</span>
+	<p class="auth-span">
+		<span class="muted"><i class="fa fa-user"></i> 
+			发件方：<a href="__MODULE__/Home/zone/id/<{$vo.message_from_id}>.html"><{$vo.message_from_name}></a>(ID:<{$vo.message_from_id}>)|
+			收件方：<a href="__MODULE__/Home/zone/id/<{$vo.message_to_id}>.html"><{$vo.message_to_name}></a>(ID:<{$vo.message_to_id}>)
+		</span>
+		<span class="muted"><i class="fa fa-clock-o"></i>
+			<{$vo.message_send_time}>
+			<if condition="$vo['message_if_read'] eq 1">
+			对方已读
+			<else/>
+			对方未读
+			</if>
+		</span>	
+	</p>
+	</div>
+		</div>
+		
+	</li>
+</volist>
+	</div>
+	<{$page}>
+</div>
+</block>
+
+

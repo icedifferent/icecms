@@ -1,0 +1,25 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title><{$user_name}>_修改头像</title>
+</block>
+<block name="body">
+<div class="top"><a href=__MODULE__/Index/index>首页</a>>修改头像</div>
+<ul class="user-titbox">
+	<div class='box'>
+		我的当前头像：
+		<if condition="$user_img eq ''">
+		<img class="image" src="__PUBLIC__/Uploads/user_head/defalut.jpg" /> 
+		<else/>
+		<img class="image" src="__PUBLIC__/Uploads/user_head/<{$user_img}>" /> 
+		</if>
+	   <div class="bbs_fl_line">
+        	<form action="__URL__/change_user_head_do" enctype="multipart/form-data" method="post" name="uploadfile">
+			<li class="title_bbs"><input type="file" name="upfile" />（图片大小<=2M）</li>
+		<input name="csrf_token" type="hidden"   value= <{$csrf_token}> />
+			<input type="submit" name="submit"  class="bbs_post" value="确定上传（修改）"/>
+        	</form>
+		<a href=__URL__/index>返回</a>
+	   </div>
+	</div>
+</ul>
+</block>

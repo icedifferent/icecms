@@ -1,0 +1,78 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title>发帖</title>
+<style>
+			form {
+				margin: 0;
+			}
+			textarea {
+				display: block;
+			}
+		</style>
+		<link rel="stylesheet" href="__PUBLIC__/editor/themes/default/default.css" />
+	<!--	<script charset="utf-8" src="__PUBLIC__/editor/kindeditor-min.js"></script>
+	<script charset="utf-8" src="__PUBLIC__/editor/lang/zh_CN.js"></script>-->
+		<script>
+			/*	var editor;
+			KindEditor.ready(function(K) {
+				editor = K.create('textarea[name="content"]', {
+					 width : '100%',
+					resizeType : 1,
+					allowPreviewEmoticons : false,
+					allowImageUpload : true,
+					items : [
+						 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+						'removeformat',  '|', 'emoticons', 'image', 'link','insertfile','code','source']
+					});
+
+			
+       			
+			
+					
+			});*/
+		</script>
+		<script type="text/javascript"><!--
+		google_ad_client = "ca-pub-7116729301372758";
+		/* 更多演示（728x90） */
+		google_ad_slot = "5052271949";
+		google_ad_width = 728;
+		google_ad_height = 90;
+		//-->
+		</script>
+</block>
+<block name="body">
+<div class="bbs_line">
+	<a href="__MODULE__/Index/index">首页</a>>
+	<a href="__MODULE__/Bbs/index">论坛</a>>
+	<a href="__MODULE__/Bbs/add">发帖</a>
+</div>
+<div class="bbs_head">修改帖子</div>
+	<div class="bbs_fl_line">
+	<form name="LoginForm" action="__URL__/change_postdo.html" enctype="multipart/form-data" method="post">
+		<p>
+			<label  class="label">标题:</label>
+			<input name="title" type="text" class="input" value="<{$title}>"  />
+		<p/>
+		<p>
+		<label class="label">内容:</label>
+		<textarea name="content" id="content" style="width:100%;height:200px;"><{$content}></textarea>
+			<p/>
+			<input name="id" value="<{$post_id}>" type="hidden">
+			<input name="csrf_token" type="hidden"   value= <{$csrf_token}> />
+		版块选择:<select name="board_id">
+			<volist name="board_arr_" id="vo">
+				<option value="<{$vo.bbs_board_id}>"><{$vo.bbs_board_name}></option>
+			</volist>
+		</select>
+		<div class="we1">
+			<input type="submit" name="submit" value="确定修改" class="bbs_post"/>	
+		</div>
+
+	<a>
+		<a href="http://icecms.cn/index.php/Home/Article/read/id/1.html">第一次提问?请查看“提问的艺术”</a>
+	</a>
+	<br/>	<a >如果无法上传附件或者文件,请更改换浏览器再试</a><br />
+	快捷方式:<a href="javascript:onclick=codeAdd(); return false">添加代码</a>|<a href="javascript:onclick=urlAdd(); return false">添加超链接</a>|<a href="javascript:onclick=imgAdd(); return false">添加图片链接</a>
+</div>
+</block>
+

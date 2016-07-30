@@ -1,0 +1,21 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title>搜索—<{$title}></title>
+</block>
+<block name="body">
+<div class="bbs_line"><a href="__MODULE__/Index/index">首页</a>><a href="__MODULE__/Article/index">文章</a>><a href="__MODULE__/Article/add">投稿</a></div>
+<div class="content"><{$title}></div>
+<volist name="list" id="vo" mod="20">
+	<if condition="$mod%2 neq 0">
+		<div class="bbs_title">
+	<else/>
+		<div class="bbs_title_two">
+	</if>
+	<img src="__PUBLIC__/images/<{$i}>.gif">
+<a href=__CONTROLLER__/read/id/<{$vo.article_id}>.html><{$vo.article_title}></a><br>
+<a href=__MODULE__/Home/zone/id/<{$vo.article_ower_id}>.html><span style="color:#FFABAB"><{$vo.article_ower_name}></span></a>
+<span class="sm"><{$vo.article_date}></span><span class="right"><{$vo.article_hot}>阅</span></div>
+</volist>
+<{$page}>
+<a href="__CONTROLLER__">返回</a>
+</block>

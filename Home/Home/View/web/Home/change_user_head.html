@@ -1,0 +1,26 @@
+<extend name="web:Public:body"/>
+<block name="title">
+<title><{$user_name}>_修改头像</title>
+</block>
+<block name="body">
+<div class="content-wrap">
+	<div class="content">
+		<header class="archive-header">
+	修改头像
+		</header>
+<ul class="user-titbox">
+	我的当前头像：
+		<if condition="$user_img eq ''">
+			<img class="image" src="__PUBLIC__/Uploads/user_head/defalut.jpg" /> 
+		<else/>
+			<img class="image" src="__PUBLIC__/Uploads/user_head/<{$user_img}>" /> 
+		</if>
+	<form action="__URL__/change_user_head_do" enctype="multipart/form-data" method="post" name="uploadfile">
+<div align="left" class="open-message">	<li class="title_bbs">	<input type="file" name="upfile" />（图片大小<=2M）</li></div >
+	<input name="csrf_token" type="hidden"   value= <{$csrf_token}> />
+	<input type="submit" name="submit"  class="action" value="确定上传（修改）"/>
+	</form>	
+</ul>
+	</div>
+	</div>
+</block>

@@ -1,0 +1,53 @@
+<extend name="web:Public:body"/>
+<block name="title">
+<title>搜索—<{$title}></title>
+</block>
+<block name="body">
+<div class="content-wrap">
+	<div class="content">
+		<header class="archive-header">
+		</header>
+<volist name="list" id="vo" mod="8">
+<article class="excerpt">
+	<header><h2><a target="_blank" href="__MODULE__/Article/read/id/<{$vo.article_id}>.html" title="<{$vo.article_title}>"><{$vo.article_title}></a></h2>
+	</header>
+	<div class="focus">
+		<a target="_blank" href="__MODULE__/Article/read/id/<{$vo.article_id}>.html">
+			<!--	<img class="thumb" src="__PUBLIC__/images/nojpg.jpg" alt="<{$vo.article_title}>" /></a>-->
+	</div>
+	<span class="note">
+		 		<?php
+					$content=$vo['article_content'];
+		       $content=preg_replace('/\<.*\>/uisU'," ",$content);
+		echo 	$content= htmlspecialchars(sub_str($content,0,120,0)).'....';
+		?>
+		
+		……<a href="__MODULE__/Article/read/id/<{$vo.article_id}>.html" rel="nofollow" class="more-link">继续阅读 &raquo;</a></span>
+<p class="auth-span">
+<span class="muted"><i class="fa fa-user"></i> 
+	<a href="__MODULE__/Home/zone/id/<{$vo.article_ower_id}>.html"><{$vo.article_ower_name}></a>
+</span>
+<span class="muted"><i class="fa fa-clock-o"></i>
+	<{$vo.article_date}>
+	</span>	
+		<span class="muted">
+			<i class="fa fa-eye"></i>
+				<span class="count"><{$vo.article_hot}></span>阅
+		</span></p>
+</article>
+
+</volist>
+	</div>
+	<{$page}>
+</div>
+</block>
+<block name="you">
+	<div class="title">
+		<h2>
+			编程知识
+		</h2>
+	</div>
+            <volist name="a_list_b" id="vo" mod="10">
+	   	<a target="_blank" href="__MODULE__/Article/read/id/<{$vo.article_id}>.html" title="<{$vo.article_title}>"><{$vo.article_title}></a><br>
+    </volist>
+</block>

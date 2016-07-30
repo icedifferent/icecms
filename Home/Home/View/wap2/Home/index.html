@@ -1,0 +1,38 @@
+<extend name="./Public/body"/>
+<block name="title">
+<title><{$user_name}>个人中心</title>
+</block>
+<block name="body">
+<div class="top"><a href=__MODULE__/Index/index>首页</a>>个人资料</div>
+你好:<a href=__MODULE__/Home/index><{$user_name}></a>
+<div class="nav"><a href=__MODULE__/Message/index>信箱</a><a href=__URL__/zone/id/<{$user_id}>>我的空间</a><a href=__URL__/change_zone/>空间排版</a><a href=__MODULE__/Bbs/user_post/>我的帖子</a></div>
+<div class="title_bbs">
+	<ul class="user-titbox">
+		<li class="title_bbs"><span class="right">
+			<if condition="$user_img eq ''">
+		<img class="image" src="__PUBLIC__/Uploads/user_head/defalut.jpg" /> 
+		<else/>
+		<img class="image" src="__PUBLIC__/Uploads/user_head/<{$user_img}>" /> 
+		</if>
+		<a href="__URL__/change_user_head">修改头像</a>
+		</span></li>
+<li class="title_bbs"><b>ID</b><span class="right"><{$user_id}></span></li>
+<li class="title_bbs"><b>	用户名</b><span class="right"><{$user_name}></span></li>
+<li class="title_bbs"><b>	邮箱</b><span class="right"><{$user_email}>【该邮箱找回密码的时候使用】</span></li>
+<li class="title_bbs"><b>	手机号码</b><span class="right"><{$user_phone}>【不可修改】</span></li>
+<li class="title_bbs"><b>	性别</b><span class="right"><{$user_sex}></span></li>
+<li class="title_bbs"><b>	积分</b><span class="right"><{$user_integral}></span></li>
+<li class="title_bbs"><b>	金币</b><span class="right"><{$user_money}></span></li>
+<li class="title_bbs"><b>	身份</b><span class="right"><{$user_rank}></span></li>
+<li class="title_bbs"><b>	回复总数</b><span class="right"><{$user_respond_number}></span></li>
+<li class="title_bbs"><b>	帖子总数</b><span class="right"><{$user_theme_number}></span></li>
+<li class="title_bbs"><b>	注册日期</b><span class="right"><{$user_reg_date}></span></li>
+<li class="title_bbs"><b>	个性签名</b><span class="right"><{$user_character}></span></li>
+<li class="title_bbs"><b>	上次登录ip</b><span class="right"><{$user_login_last_ip}></span></li>
+<li class="title_bbs"><b>	上次登录时间</b><span class="right"><{$user_last_login_time}></span></li>
+</ul>
+</div>
+
+<a href=__URL__/change>修改资料【包括密码】</a><br>
+<a href=__MODULE__/Login/logout>退出</a>
+</block>

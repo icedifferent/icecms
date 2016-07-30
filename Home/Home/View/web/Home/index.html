@@ -1,0 +1,39 @@
+<extend name="web:Public:body"/>
+<block name="title">
+<title><{$user_name}>个人中心</title>
+</block>
+<block name="body">
+<div class="content-wrap">
+	<div class="content">
+		<header class="archive-header">
+		个人资料
+		</header>
+		<ul class="user-titbox">
+			<div align="left" class="open-message"><span class="right">
+				<if condition="$user_img eq ''">
+		<img class="image" src="__PUBLIC__/Uploads/user_head/defalut.jpg" /> 
+		<else/>
+		<img class="image" src="__PUBLIC__/Uploads/user_head/<{$user_img}>" /> 
+		</if>
+		</span></li></div >
+		<a href="__URL__/change_user_head">修改头像</a>
+<div align="left" class="open-message">	<li class="title_bbs"><b>ID</b><span class="right"><{$user_id}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	用户名:</b><span class="right"><{$user_name}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	邮箱:</b><span class="right"><{$user_email}>【该邮箱找回密码的时候使用】</span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	手机号码:</b><span class="right"><{$user_phone}>【不可修改】</span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	性别:</b><span class="right"><{$user_sex}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	积分:</b><span class="right"><{$user_integral}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	金币:</b><span class="right"><{$user_money}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	身份:</b><span class="right"><{$user_rank}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	回复总数:</b><span class="right"><{$user_respond_number}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	帖子总数:</b><span class="right"><{$user_theme_number}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	注册日期:</b><span class="right"><{$user_reg_date}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	个性签名:</b><span class="right"><{$user_character}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	上次登录ip:</b><span class="right"><{$user_login_last_ip}></span></li></div >
+<div align="left" class="open-message">	<li class="title_bbs"><b>	上次登录时间:</b><span class="right"><{$user_last_login_time}></span></li></div >
+</ul>
+<a href="__URL__/change" class="action">修改资料【包括密码】</a><br>
+<a href="__MODULE__/Login/logout" class="action action-share bdsharebuttonbox">退出登陆</a>
+</div>
+</div>
+</block>

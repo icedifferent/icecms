@@ -1,0 +1,19 @@
+<extend name="Public/body"/>
+<block name="title">
+<title><{$title}></title>
+</block>
+<block name="body">
+<div class="tp"><{$title}></div>
+<hr>
+<volist name="list" id="vo" mod="20">
+<{$mod+1}>
+：ID:<{$vo.user_id}>
+<br>用户:<{$vo.user_name}><br />
+注册日期:<{$vo.user_reg_date}>
+<a href="__CONTROLLER__/change_user/id/<{$vo.user_id}>">操作</a><hr>
+</volist>
+<{$page}>
+<a href="__CONTROLLER__">返回</a>
+<hr>
+</block>
+
