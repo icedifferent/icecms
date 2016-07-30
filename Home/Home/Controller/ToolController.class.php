@@ -88,7 +88,7 @@ class ToolController extends PublicController {
 	}
 
 	public function wo_submit(){
-		exit("本站已经不提供此服务");
+		//exit("本站已经不提供此服务");
 		ob_clean();
 		if($this->user_sid==''){
 			$this->error('请先登录',U('Login/index'),3);
@@ -96,24 +96,18 @@ class ToolController extends PublicController {
 		}
 		//带访问登录页面获取cookie
 		$contents=Ncurl("http://17wo.cn/Login.action",0,0,0,0,0,1,0,0);//返回cookie
-	//	preg_match_all('/Set-Cookie: (.*);/isU',$contents[1],$array);
-		preg_match_all('/sessionid=(.*) /uisU',$contents[1],$sessionids);
+		preg_match_all('/cid=(.*)\r\n/uisU',$contents[1],$sessionids);
 		preg_match_all('/JSESSIONID=(.*);/uisU',$contents[1],$sessionidss);
- 		$c="JSESSIONID=".$sessionidss[1][0].";sessionid=".$sessionidss[1][0];
-	//	foreach($array[1] as $d){
- 		//	$c=$c.$d.'; ';
-	//	}
-	//	echo $contents[1];
-//echo $c;
+ 		//$c="JSESSIONID=".$sessionidss[1][0].";sessionid=".$sessionidss[1][0];
 		$httpheader = array(
 			'Accept:image/png,image/*;q=0.8,*/*;q=0.5',
 			'Referer:http://wap.17wo.cn/Login.action',
 			'User-Agent:Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36',
-			'Cookie: CNZZDATA3082302=cnzz_eid%3D1568494461-1458558927-%26ntime%3D1462275916; Hm_lvt_23e65108439f66359e34e47937449f75=1460176745,1461480413,1462273276; JSESSIONID='.$sessionidss[1][0].'; myGrowUp=2016-5-31; sessionid='.$sessionidss[1][0],
+			'Cookie:JSESSIONID='.$sessionidss[1][0].'; cid='.$sessionids[1][0],
 			
 		);
 		$tourl="http://wap.17wo.cn/captcha.do";
-		$content=Ncurl($tourl,0,0,$httpheader,0,0,1,0,$c);//获取验证码返回cookie
+		$content=Ncurl($tourl,0,0,$httpheader,0,0,1,0);//获取验证码返回cookie
 	//	print_r($content[0]);
 		$header = substr($content[1], 0, $content[0]['header_size']);//分离响应头和body
 		$body = substr($content[1], $content[0]['header_size']);
@@ -126,7 +120,7 @@ class ToolController extends PublicController {
 		//print_r($sessionid);
 		$cookie=$sessionidss[1][0];
 		//exit();
-		$cookie="sessionid=".$cookie;
+		$cookie="sessionid=".$cookie.";cid=".$sessionids[1][0];
 		$this->assign('cookie',$cookie);
 		$this->assign('filename',$filename);
 		$this->display();
@@ -137,7 +131,7 @@ class ToolController extends PublicController {
 
 	//联通一起沃签到
 	public function wo(){
-		exit("本站已经不提供此服务");
+		//exit("本站已经不提供此服务");
 		$mes='';
 		if($this->user_sid==''){
 			$arrs=array();
@@ -204,7 +198,7 @@ class ToolController extends PublicController {
 
 
 	public function wo_do(){
-		exit("本站已经不提供此服务");
+		//exit("本站已经不提供此服务");
 		$a=rand(192,223);
 		$b=rand(0,255);
 		$c=rand(0,255);
